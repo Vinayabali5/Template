@@ -1,0 +1,73 @@
+<form id="examResultsEditForm" name="examResultsEditForm" role="form" novalidate show-validation>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="ctrl.cancel()">&times;</button>
+        <h4 class="modal-title" id="myToDoLabel">Edit Exam Result - {{ctrl.examResults.studentId}}</h4>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <div class="form-group" ng-show="true">
+                <label for="candidateNo" class="col-xs-4 col-sm-4 col-md-4 control-label">Candidate No:</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input type="text" class="form-control" name="id" readonly ng-model="ctrl.examResults.candidateNo">
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="true">
+                <label for="boardIdentifier" class="col-xs-4 col-sm-4 col-md-4 control-label">Board Identifier:</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input type="text" class="form-control text ui-widget-content ui-corner-all" name="boardIdentifier" readonly ng-model="ctrl.examResults.boardIdentifier"></input>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="resultCode" class="col-xs-4 col-sm-4 col-md-4 control-label">Result Code</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input type="text" class="form-control text ui-widget-content ui-corner-all" name="resultCode" readonly ng-model="ctrl.examResults.resultCode"></input>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="examSeries" class="col-xs-4 col-sm-4 col-md-4 control-label">Exam Series</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input type="text" class="form-control text ui-widget-content ui-corner-all" name="examSeries" readonly ng-model="ctrl.examResults.examSeries"></input>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="examYear" class="col-xs-4 col-sm-4 col-md-4 control-label">Exam Year</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input type="text" class="form-control text ui-widget-content ui-corner-all" name="examYear" readonly ng-model="ctrl.examResults.examYear"></input>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="score" class="col-xs-4 col-sm-4 col-md-4 control-label">Score:</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input type="text" class="form-control text ui-widget-content ui-corner-all" name="score" ng-model="ctrl.examResults.score"></input>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="grade" class="col-xs-4 col-sm-4 col-md-4 control-label">Grade:</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input type="text" class="form-control text ui-widget-content ui-corner-all" name="grade" ng-model="ctrl.examResults.grade"></input>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="ctrl.cancel()">
+            <span class="glyphicon glyphicon-ban-circle"></span>
+            Cancel
+        </button>
+        <button type="button" class="btn btn-primary" ng-click="ctrl.save()">
+            <span class="glyphicon glyphicon-save"></span>
+            Save
+        </button>
+    </div>
+
+</form>

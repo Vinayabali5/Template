@@ -1,0 +1,738 @@
+<!--
+    <script type="text/javascript" th:inline="javascript" th:src="@{/js/postcode-lookup.js}"></script>
+    <script type="text/javascript" th:inline="javascript" th:src="@{/js/duplicate-detection.js}"></script>
+    <script type="text/javascript" th:inline="javascript" th:src="@{/js/contact-address-dialog1.js}"></script>
+    <script type="text/javascript" th:inline="javascript" th:src="@{/js/datepicker.js}"></script>
+-->
+<div>
+    <form name="application-form" class="form" ng-action="createApplication()">
+        <!-- Application Details -->
+        <div class="row">
+            <div class="col-xs-12">
+                <fieldset>
+                    <legend>Application Details</legend>
+                </fieldset>
+                <div class="form-group col-sm-12 col-md-6">
+                    <label for="received" class="col-xs-6 col-sm-4 control-label">Date Received:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <div class="input-group">
+                            <input type="text" class="form-control" ng-init="applicationReceived = false" uib-datepicker-popup="dd/MM/yyyy" is-open="applicationReceived" ng-model="application.received" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="applicationReceived = !applicationReceived"><span class="glyphicon glyphicon-calendar"></span></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-12 col-md-6">
+                    <label for="academicYear" class="col-xs-6 col-sm-4 control-label">Year Applied:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <academic-year-selection class="form-control" ng-model="application.academicYearId"></academic-year-selection>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personal Details -->
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <fieldsset>
+                    <legend>Personal Details</legend>
+                </fieldsset>
+                <div class="form-group">
+                    <label for="firstName" class="col-xs-6 col-sm-4 control-label">First Name:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" placeholder="First Name" ng-model="application.firstName" id="first-name" name="firstName" minlength="2" type="text"></input>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="middleNames" class="col-xs-6 col-sm-4 control-label">Middle Name(s):</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" placeholder="Middle Name(s)" ng-model="application.middleNames" id="middle-names" name="middleNames" minlength="2" type="text"></input>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="surname" class="col-xs-6 col-sm-4 control-label">Surname:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" type="text" name="surname" minlength="2" id="surname" placeholder="Surname" ng-model="application.surname"></input>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="preferredName" class="col-xs-6 col-sm-4 control-label">Preferred Name:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" type="text" name="preferredName" id="preferred-name" minlength="2" placeholder="Preferred Name" ng-model="application.preferredName"></input>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="previousSurname" class="col-xs-6 col-sm-4 control-label">Previous Surname:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" type="text" name="previousSurname" id="PreviousSurname" minlength="2" placeholder="Previous Surname" ng-model="application.previousSurname"></input>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="dob" class="col-xs-6 col-sm-4 control-label">Date of Birth:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" type="text" name="dob" id="dob" placeholder="DD/MM/YYYY" ng-model="application.dob"></input>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="gender" class="col-xs-6 col-sm-4 control-label">Gender:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <gender-selection class="form-control" ng-model="application.genderId"></gender-selection>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="home" class="col-xs-6 col-sm-4 control-label">Home Telephone:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control left phone-group" type="tel" name="home" id="home" placeholder="Home Telephone" ng-model="application.home"></input>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="mobile" class="col-xs-6 col-sm-4 control-label">Mobile Telephone:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control left phone-group" type="tel" name="mobile" id="mobile" placeholder="Mobile Telephone" ng-model="application.mobile"></input>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="email" class="col-xs-6 col-sm-4 control-label">Student Email:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" type="email" name="email" id="email" placeholder="Student Email" ng-model="application.email"></input>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nationality" class="col-xs-6 col-sm-4 control-label">Nationality:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <nationality-selection class="form-control" ng-model="application.nationality"></nationality-selection>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="resident" class="col-xs-6 col-sm-4 control-label">Resident:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" type="checkbox" name="resident" id="resident" ng-model="application.resident"></input>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="countryOfResidence" class="col-xs-6 col-sm-4 control-label">Country Of Residence:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" type="text" name="countryOfResidence" id="country-of-residence" placeholder="Country Of Residence" ng-model="application.countryOfResidence"></input>
+                    </div>
+                </div>
+            </div>
+
+            <div id="main-address-form" class="col-xs-12 col-md-6 postcode-lookup-address">
+                <fieldset>
+                    <legend>Address Details</legend>
+                </fieldset>
+                <input type="hidden" id="addressId" ng-model="application.addressId" readonly="false" tabindex="-1"></input>
+
+                <div class="form-group">
+                    <label for="line1" class="col-xs-6 col-sm-4 control-label">Address Line 1:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" type="text" id="line1" placeholder="Address Line 1" ng-model="application.line1" readonly="false" tabindex="-1" required="true"></input>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="line2" class="col-xs-6 col-sm-4 control-label">Address Line 2:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" type="text" id="line2" placeholder="Address Line 2" ng-model="application.line2" readonly="false" tabindex="-1"></input>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="line3" class="col-xs-6 col-sm-4 control-label">Address Line 3:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" type="text" id="line3" placeholder="Address Line 3" ng-model="application.line3" readonly="false" tabindex="-1"></input>
+                    </div>
+                </div>
+
+                <div class="form-group hidden">
+                    <label for="line4" class="hidden">Address Line 4:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" type="hidden" id="line4" placeholder="Address Line 4" ng-model="application.line4" readonly="false" tabindex="-1"></input>
+                    </div>
+                </div>
+
+                <div class="form-group hidden">
+                    <label for="line5" class="hidden">Address Line 5:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" type="hidden" id="line5" placeholder="Address Line 5" ng-model="application.line5" readonly="false" tabindex="-1"></input>
+                    </div>
+                </div>
+
+                <div class="form-group hidden">
+                    <label for="line5" class="hidden">Building Name:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" type="hidden" id="buildingName" placeholder="Building Name" ng-model="application.buildingName" readonly="false" tabindex="-1"></input>
+                    </div>
+                </div>
+                <div class="form-group hidden">
+                    <label for="line5" class="hidden">SubBuilding:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" type="hidden" id="subBuilding" placeholder="SubBuilding" ng-model="application.subBuilding" readonly="false" tabindex="-1"></input>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="town" class="col-xs-6 col-sm-4 control-label">Town:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" type="text" id="town" placeholder="Town" ng-model="application.town" readonly="false" tabindex="-1"></input>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="county" class="col-xs-6 col-sm-4 control-label">County:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" type="text" id="county" placeholder="County" ng-model="application.county" readonly="false" tabindex="-1"></input>
+                    </div>
+                </div>
+
+                <div class="container col-sx-12 col-sm-12 col-md-12 ${#fields.hasErrors('postcode')}? has-error">
+                    <div class="row">
+                        <label for="postcode" class="col-xs-6 col-sm-4 control-label">Postcode</label>
+                        <div class="col-xs-6 col-sm-8">
+                            <input class="form-control postcode" type="text" id="postcode" placeholder="Postcode" ng-model="application.postcode" required="true"></input>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-md-offset-4">
+                            <button id="postcode-lookup" type="button" value="Button" class="btn btn-primary postcode-lookup">Lookup</button>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3">
+                            <button id="manual-lookup" type="button" value="Button" class="btn btn-primary">Manual Entry</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group col-sm-12 col-md-6">
+                <fieldsset>
+                    <legend>Sibling Details</legend>
+                </fieldsset>
+                <div class="form-group">
+                    <label for="sibling" class="col-xs-6 col-sm-4 control-label">Sibling at College:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" type="checkbox" name="sibling" id="sibling" ng-model="application.sibling"></input>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="siblingName" class="col-xs-6 col-sm-4 control-label">Sibling Name:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" placeholder="Sibling Name" ng-model="application.siblingName" id="sibling-name" name="siblingName" minlength="2" type="text"></input>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="siblingYear" class="col-xs-6 col-sm-4 control-label">Sibling Year:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" placeholder="Sibling Year" ng-model="application.siblingYear" id="sibling-year" name="siblingYear" minlength="4" type="text"></input>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="siblingAdmNo" class="col-xs-6 col-sm-4 control-label">Sibling AdmNo:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" placeholder="Sibling AdmNo" ng-model="application.siblingAdmNo" id="sibling-admNo" name="siblingAdmNo" minlength="4" type="text"></input>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!-- Twin Possible -->
+        <div class="hidden row" id="twin-match">
+            <div class="col-xs-12 col-md-12">
+                <fieldset>
+                    <legend>Duplicate Matches Found</legend>
+                </fieldset>
+                <table id="twin-table" class="table">
+                    <thead>
+                        <th>Surname</th>
+                        <th>First Name</th>
+                        <th>Middle Name(s)</th>
+                        <th>Date of Birth</th>
+                        <th>Home Telephone</th>
+                        <th>Mobile Telephone</th>
+                        <th>Address</th>
+                        <th>Actions</th>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Correspondence Details -->
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <fieldsset>
+                    <legend>Correspondence Details</legend>
+                </fieldsset>
+                <!-- Contact 1 -->
+                <div class="contact col-xs-12 col-md-6">
+                    <h4>Contact 1</h4>
+                    <input type="hidden" id="contact-0-id" class="form-group col-md-12 col-sm-12" ng-model="application.contacts[0].id"></input>
+
+                    <div class="form-group">
+                        <label class="col-xs-4 col-sm-4 col-md-4 control-label" for="contact-0-contactType">Contact Type:</label>
+                        <div class="col-xs-8 col-sm-8 col-sm-8 col-md-8">
+                            <contact-type-selection class="form-control" ng-model="application.contacts[0].contactTypeId"></contact-type-selection>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-xs-4 col-sm-4 col-md-4 control-label" for="contact-0-title">Title:</label>
+                            <div class="col-xs-8 col-sm-8 col-sm-8 col-md-8">
+                                <title-selection class="form-control" ng-model="application.contacts[0].contact.title.id"></title-selection>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contacts[0].contact.firstName" class="col-xs-6 col-sm-4 control-label">First Name:</label>
+                            <div class="col-xs-6 col-sm-8">
+                                <input class="form-control" placeholder="First Name" ng-model="application.contacts[0].contact.firstName" id="contact-0-first-name" name="contacts[0].contact.firstName" minlength="2" type="text"></input>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contacts[0].contact.surname" class="col-xs-6 col-sm-4 control-label">Surname:</label>
+                            <div class="col-xs-6 col-sm-8">
+                                <input class="form-control" placeholder="Surname" ng-model="application.contacts[0].contact.surname" id="contact-0-surname" name="contacts[0].contact.surname" minlength="2" type="text"></input>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contacts[0].contact.home" class="col-xs-6 col-sm-4 control-label">Home:</label>
+                            <div class="col-xs-6 col-sm-8">
+                                <input class="form-control" placeholder="Home" ng-model="application.contacts[0].contact.home" id="contact-0-home" name="contacts[0].contact.home" type="text"></input>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contacts[0].contact.mobile" class="col-xs-6 col-sm-4 control-label">Mobile:</label>
+                            <div class="col-xs-6 col-sm-8">
+                                <input class="form-control" placeholder="Mobile" ng-model="application.contacts[0].contact.mobile" id="contact-0-mobile" name="contacts[0].contact.mobile" type="text"></input>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contacts[0].contact.work" class="col-xs-6 col-sm-4 control-label">Work:</label>
+                            <div class="col-xs-6 col-sm-8">
+                                <input class="form-control" placeholder="Work" ng-model="application.contacts[0].contact.work" id="contact-0-work" name="contacts[0].contact.work" type="text"></input>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contacts[0].contact.email" class="col-xs-6 col-sm-4 control-label">Email:</label>
+                            <div class="col-xs-6 col-sm-8">
+                                <input class="form-control" placeholder="Email" ng-model="application.contacts[0].contact.email" id="contact-0-email" name="contacts[0].contact.email" type="email"></input>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-0-contactable" class="col-xs-6 col-sm-4 control-label">Contactable:</label>
+                            <div class="col-xs-6 col-sm-8">
+                                <input class="form-control" type="checkbox" name="contact-0-contactable" id="contact-0-contactable" ng-model="application.contacts[0].contactable"></input>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-0-preferred" class="col-xs-6 col-sm-4 control-label">Preferred:</label>
+                            <div class="col-xs-6 col-sm-8">
+                                <input class="form-control" type="checkbox" name="contact-0-preferred" id="contact-0-preferred" ng-model="application.contacts[0].preferred"></input>
+                            </div>
+                        </div>
+
+                        <div class="contact-dialog-container">
+                            <div id="contact0-address-form" class="col-xs-12 col-md-12 contact-address-dialog postcode-lookup-address">
+                                <fieldset>
+                                    <legend>Contact 1 Address</legend>
+                                </fieldset>
+
+                                <div class="form-group">
+                                    <label for="contacts[0].contact.address.line1" class="col-xs-4 col-sm-4 col-md-4 control-label">Address Line1</label>
+                                    <div class="col-xs-8 col-sm-8 col-sm-8 col-md-8">
+                                        <input class="form-control" type="text" name="line1" id="contact0-line1" placeholder="Address Line1" readonly="false" tabindex="-1" ng-model="application.contacts[0].contact.address.line1"></input>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="contacts[0].contact.address.line2" class="col-xs-4 col-sm-4 col-md-4 control-label">Address Line2</label>
+                                    <div class="col-xs-8 col-sm-8 col-sm-8 col-md-8">
+                                        <input class="form-control" type="text" name="line2" id="contact0-line2" placeholder="Address Line2" readonly="false" tabindex="-1" ng-model="application.contacts[0].contact.address.line2"></input>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="contacts[0].contact.address.line3" class="col-xs-4 col-sm-4 col-md-4 control-label">Address Line3</label>
+                                    <div class="col-xs-8 col-sm-8 col-sm-8 col-md-8">
+                                        <input class="form-control" type="text" name="line3" id="contact0-line3" placeholder="Address Line3" readonly="false" tabindex="-1" ng-model="application.contacts[0].contact.address.line3"></input>
+                                    </div>
+                                </div>
+
+                                <div class="form-group hidden">
+                                    <label class="col-xs-4 col-sm-4 col-md-4 control-label" for="contacts[0].contact.address.line4">Address Line4</label>
+                                    <div class="hidden">
+                                        <input class="hidden" type="text" name="line4" id="contact0-line4" placeholder="Address Line4" readonly="false" tabindex="-1" ng-model="application.contacts[0].contact.address.line4"></input>
+                                    </div>
+                                </div>
+
+                                <div class="form-group hidden">
+                                    <label class="col-xs-4 col-sm-4 col-md-4 control-label" for="contacts[0].contact.address.line5">Address Line5</label>
+                                    <div class="hidden">
+                                        <input class="hidden" type="text" name="line5" id="contact0-line5" placeholder="Address Line5" readonly="false" tabindex="-1" ng-model="application.contacts[0].contact.address.line5"></input>
+                                    </div>
+                                </div>
+
+                                <div class="form-group hidden">
+                                    <label class="col-xs-4 col-sm-4 col-md-4 control-label" for="contacts[0].contact.address.buildingName">Building Name</label>
+                                    <div class="hidden">
+                                        <input class="hidden" type="text" name="buildingName" id="contact0-buildingName" placeholder="Building Name" readonly="false" tabindex="-1" ng-model="application.contacts[0].contact.address.buildingName"></input>
+                                    </div>
+                                </div>
+
+                                <div class="form-group hidden">
+                                    <label class="col-xs-4 col-sm-4 col-md-4 control-label" for="contacts[0].contact.address.subBuilding">SubBuilding</label>
+                                    <div class="hidden">
+                                        <input class="hidden" type="text" name="subBuilding" id="contact0-subBuilding" placeholder="SubBuilding" readonly="false" tabindex="-1" ng-model="application.contacts[0].contact.address.subBuilding"></input>
+                                    </div>
+                                </div>
+
+                                <div class="form-group hidden">
+                                    <label class="col-xs-4 col-sm-4 col-md-4 control-label" for="contacts[0].contact.address.udprn">UDP Reference Number</label>
+                                    <div class="hidden">
+                                        <input class="hidden" type="text" name="udprn" id="contact0-udprn" placeholder="UDPRN" readonly="false" tabindex="-1" ng-model="application.contacts[0].contact.address.udprn"></input>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-4 col-sm-4 col-md-4 control-label" for="contacts[0].contact.address.town">Post Town</label>
+                                    <div class="col-xs-8 col-sm-8 col-sm-8 col-md-8">
+                                        <input class="form-control" type="text" name="town" id="contact0-town" placeholder="Post Town" readonly="false" tabindex="-1" ng-model="application.contacts[0].contact.address.town"></input>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-xs-4 col-sm-4 col-md-4 control-label" for="contacts[0].contact.address.county">County</label>
+                                    <div class="col-xs-8 col-sm-8 col-sm-8 col-md-8">
+                                        <input class="form-control" type="text" name="town" id="contact0-county" placeholder="County" readonly="false" tabindex="-1" ng-model="application.contacts[0].contact.address.county"></input>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-sx-12 col-sm-12 col-md-12">
+                                    <div class="row">
+                                        <label class="col-xs-4 col-sm-4 col-md-4 control-label" for="contacts[0].contact.address.postcode">Postcode</label>
+                                        <div class="col-xs-8 col-sm-8 col-sm-8 col-md-8">
+                                            <input class="form-control postcode" type="text" name="postcode" id="contact0-postcode" placeholder="Postcode" ng-model="application.contacts[0].contact.address.postcode"></input>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-3 col-sm-3 col-sm-3 col-md-3 col-md-offset-4">
+                                            <button id="contact0-postcode-lookup" type="button" class="btn btn-primary postcode-lookup">Lookup</button>
+                                        </div>
+                                        <div class="col-xs-3 col-sm-3 col-sm-3 col-md-3">
+                                            <button id="contact0-manual-lookup" type="button" value="Button" class="btn btn-primary">Manual Entry</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button id="contact0-address-present" type="button" class="form-group col-md-6 col-sm-12 btn btn-primary dialog-button postcode-lookup-address">Add Address</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact 2 -->
+                <div class="contact col-xs-12 col-md-6">
+                    <h4>Contact 2</h4>
+                    <input type="hidden" id="contact-1-id" class="form-group col-md-12 col-sm-12" ng-model="application.contacts[1].id"></input>
+
+                    <div class="form-group">
+                        <label class="col-xs-4 col-sm-4 col-md-4 control-label" for="contact-1-contactType">Contact Type:</label>
+                        <div class="col-xs-8 col-sm-8 col-sm-8 col-md-8">
+                            <contact-type-selection class="form-control" ng-model="application.contacts[1].contactTypeId"></contact-type-selection>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-xs-4 col-sm-4 col-md-4 control-label" for="contact-1-title">Title:</label>
+                            <div class="col-xs-8 col-sm-8 col-sm-8 col-md-8">
+                                <title-selection class="form-control" ng-model="application.contacts[1].contact.title.id"></title-selection>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contacts[1].contact.firstName" class="col-xs-6 col-sm-4 control-label">First Name:</label>
+                            <div class="col-xs-6 col-sm-8">
+                                <input class="form-control" placeholder="First Name" ng-model="application.contacts[1].contact.firstName" id="contact-1-first-name" name="contacts[1].contact.firstName" minlength="2" type="text"></input>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contacts[1].contact.surname" class="col-xs-6 col-sm-4 control-label">Surname:</label>
+                            <div class="col-xs-6 col-sm-8">
+                                <input class="form-control" placeholder="Surname" ng-model="application.contacts[1].contact.surname" id="contact-1-surname" name="contacts[1].contact.surname" minlength="2" type="text"></input>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contacts[1].contact.home" class="col-xs-6 col-sm-4 control-label">Home:</label>
+                            <div class="col-xs-6 col-sm-8">
+                                <input class="form-control" placeholder="Home" ng-model="application.contacts[1].contact.home" id="contact-1-home" name="contacts[1].contact.home" type="text"></input>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contacts[1].contact.mobile" class="col-xs-6 col-sm-4 control-label">Mobile:</label>
+                            <div class="col-xs-6 col-sm-8">
+                                <input class="form-control" placeholder="Mobile" ng-model="application.contacts[1].contact.mobile" id="contact-1-mobile" name="contacts[1].contact.mobile" type="text"></input>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contacts[1].contact.work" class="col-xs-6 col-sm-4 control-label">Work:</label>
+                            <div class="col-xs-6 col-sm-8">
+                                <input class="form-control" placeholder="Work" ng-model="application.contacts[1].contact.work" id="contact-1-work" name="contacts[1].contact.work" type="text"></input>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contacts[1].contact.email" class="col-xs-6 col-sm-4 control-label">Email:</label>
+                            <div class="col-xs-6 col-sm-8">
+                                <input class="form-control" placeholder="Email" ng-model="application.contacts[1].contact.email" id="contact-1-email" name="contacts[1].contact.email" type="email"></input>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-1-contactable" class="col-xs-6 col-sm-4 control-label">Contactable:</label>
+                            <div class="col-xs-6 col-sm-8">
+                                <input class="form-control" type="checkbox" name="contact-1-contactable" id="contact-1-contactable" ng-model="application.contacts[1].contactable"></input>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-1-preferred" class="col-xs-6 col-sm-4 control-label">Preferred:</label>
+                            <div class="col-xs-6 col-sm-8">
+                                <input class="form-control" type="checkbox" name="contact-1-preferred" id="contact-1-preferred" ng-model="application.contacts[1].preferred"></input>
+                            </div>
+                        </div>
+
+                        <div class="contact-dialog-container">
+                            <div id="contact1-address-form" class="col-xs-12 col-md-12 contact-address-dialog postcode-lookup-address">
+                                <fieldset>
+                                    <legend>Contact 2 Address</legend>
+                                </fieldset>
+
+                                <div class="form-group">
+                                    <label for="contacts[1].contact.address.line1" class="col-xs-4 col-sm-4 col-md-4 control-label">Address Line1</label>
+                                    <div class="col-xs-8 col-sm-8 col-sm-8 col-md-8">
+                                        <input class="form-control" type="text" name="line1" id="contact1-line1" placeholder="Address Line1" readonly="false" tabindex="-1" ng-model="application.contacts[1].contact.address.line1"></input>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="contacts[1].contact.address.line2" class="col-xs-4 col-sm-4 col-md-4 control-label">Address Line2</label>
+                                    <div class="col-xs-8 col-sm-8 col-sm-8 col-md-8">
+                                        <input class="form-control" type="text" name="line2" id="contact1-line2" placeholder="Address Line2" readonly="false" tabindex="-1" ng-model="application.contacts[1].contact.address.line2"></input>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="contacts[1].contact.address.line3" class="col-xs-4 col-sm-4 col-md-4 control-label">Address Line3</label>
+                                    <div class="col-xs-8 col-sm-8 col-sm-8 col-md-8">
+                                        <input class="form-control" type="text" name="line3" id="contact1-line3" placeholder="Address Line3" readonly="false" tabindex="-1" ng-model="application.contacts[1].contact.address.line3"></input>
+                                    </div>
+                                </div>
+
+                                <div class="form-group hidden">
+                                    <label class="col-xs-4 col-sm-4 col-md-4 control-label" for="contacts[1].contact.address.line4">Address Line4</label>
+                                    <div class="hidden">
+                                        <input class="hidden" type="text" name="line4" id="contact1-line4" placeholder="Address Line4" readonly="false" tabindex="-1" ng-model="application.contacts[1].contact.address.line4"></input>
+                                    </div>
+                                </div>
+
+                                <div class="form-group hidden">
+                                    <label class="col-xs-4 col-sm-4 col-md-4 control-label" for="contacts[1].contact.address.line5">Address Line5</label>
+                                    <div class="hidden">
+                                        <input class="hidden" type="text" name="line5" id="contact1-line5" placeholder="Address Line5" readonly="false" tabindex="-1" ng-model="application.contacts[1].contact.address.line5"></input>
+                                    </div>
+                                </div>
+
+                                <div class="form-group hidden">
+                                    <label class="col-xs-4 col-sm-4 col-md-4 control-label" for="contacts[1].contact.address.buildingName">Building Name</label>
+                                    <div class="hidden">
+                                        <input class="hidden" type="text" name="buildingName" id="contact1-buildingName" placeholder="Building Name" readonly="false" tabindex="-1" ng-model="application.contacts[1].contact.address.buildingName"></input>
+                                    </div>
+                                </div>
+
+                                <div class="form-group hidden">
+                                    <label class="col-xs-4 col-sm-4 col-md-4 control-label" for="contacts[1].contact.address.subBuilding">SubBuilding</label>
+                                    <div class="hidden">
+                                        <input class="hidden" type="text" name="subBuilding" id="contact1-subBuilding" placeholder="SubBuilding" readonly="false" tabindex="-1" ng-model="application.contacts[1].contact.address.subBuilding"></input>
+                                    </div>
+                                </div>
+
+                                <div class="form-group hidden">
+                                    <label class="col-xs-4 col-sm-4 col-md-4 control-label" for="contacts[1].contact.address.udprn">UDP Reference Number</label>
+                                    <div class="hidden">
+                                        <input class="hidden" type="text" name="udprn" id="contact1-udprn" placeholder="UDPRN" readonly="false" tabindex="-1" ng-model="application.contacts[1].contact.address.udprn"></input>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-4 col-sm-4 col-md-4 control-label" for="contacts[1].contact.address.town">Post Town</label>
+                                    <div class="col-xs-8 col-sm-8 col-sm-8 col-md-8">
+                                        <input class="form-control" type="text" name="town" id="contact1-town" placeholder="Post Town" readonly="false" tabindex="-1" ng-model="application.contacts[1].contact.address.town"></input>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-xs-4 col-sm-4 col-md-4 control-label" for="contacts[1].contact.address.county">County</label>
+                                    <div class="col-xs-8 col-sm-8 col-sm-8 col-md-8">
+                                        <input class="form-control" type="text" name="town" id="contact1-county" placeholder="County" readonly="false" tabindex="-1" ng-model="application.contacts[1].contact.address.county"></input>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-sx-12 col-sm-12 col-md-12">
+                                    <div class="row">
+                                        <label class="col-xs-4 col-sm-4 col-md-4 control-label" for="contacts[1].contact.address.postcode">Postcode</label>
+                                        <div class="col-xs-8 col-sm-8 col-sm-8 col-md-8">
+                                            <input class="form-control postcode" type="text" name="postcode" id="contact1-postcode" placeholder="Postcode" ng-model="application.contacts[1].contact.address.postcode"></input>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-3 col-sm-3 col-sm-3 col-md-3 col-md-offset-4">
+                                            <button id="contact1-postcode-lookup" type="button" class="btn btn-primary postcode-lookup">Lookup</button>
+                                        </div>
+                                        <div class="col-xs-3 col-sm-3 col-sm-3 col-md-3">
+                                            <button id="contact1-manual-lookup" type="button" value="Button" class="btn btn-primary">Manual Entry</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button id="contact1-address-present" type="button" class="form-group col-md-6 col-sm-12 btn btn-primary dialog-button postcode-lookup-address">Add Address</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Other Details -->
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <fieldsset>
+                    <legend>Previous School</legend>
+                </fieldsset>
+                <div class="form-group">
+                    <label for="school" class="col-xs-6 col-sm-4 control-label">Previous School:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <school-selection class="form-control" ng-model="application.school"></school-selection>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-6">
+                <fieldset>
+                    <legend>Student Details</legend>
+                </fieldset>
+                <div class="form-group">
+                    <label for="uln" class="col-xs-6 col-sm-4 control-label">Unique Learner No:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" placeholder="Unique Learner No" ng-model="application.uln" id="uln" name="uln" type="text"></input>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="uci" class="col-xs-6 col-sm-4 control-label">Unique Candidate Identifier:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <input class="form-control" placeholder="Unique Candidate Identifier" ng-model="application.uci" id="uci" name="uci" type="text" maxlength="13"></input>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-6">
+                <fieldset>
+                    <legend>Admissions Notes</legend>
+                </fieldset>
+                <div class="form-group">
+                    <label for="admissionsNotes" class="col-xs-6 col-sm-4 control-label">Admissions Notes:</label>
+                    <div class="col-xs-6 col-sm-8">
+                        <textarea class="form-control" placeholder="Admissions Notes" ng-model="application.admissionsNotes" id="admissionsNotes" name="admissionsNotes" rows="5" cols="30" type="text"></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Course Choices -->
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <fieldsset>
+                    <legend>Course Requests</legend>
+                </fieldsset>
+                <div>
+                    <div class="form-group">
+                        <label for="requests[0].request" class="col-xs-6 col-sm-4 control-label">1:</label>
+                        <div class="col-xs-6 col-sm-8">
+                            <input class="form-control" placeholder="1" ng-model="application.requests[0].request" id="request-1" name="requests[0].request" type="text"></input>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="requests[1].request" class="col-xs-6 col-sm-4 control-label">2:</label>
+                        <div class="col-xs-6 col-sm-8">
+                            <input class="form-control" placeholder="2" ng-model="application.requests[1].request" id="request-2" name="requests[1].request" type="text"></input>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="requests[2].request" class="col-xs-6 col-sm-4 control-label">3:</label>
+                        <div class="col-xs-6 col-sm-8">
+                            <input class="form-control" placeholder="3" ng-model="application.requests[2].request" id="request-3" name="requests[2].request" type="text"></input>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="requests[3].request" class="col-xs-6 col-sm-4 control-label">4:</label>
+                        <div class="col-xs-6 col-sm-8">
+                            <input class="form-control" placeholder="4" ng-model="application.requests[3].request" id="request-4" name="requests[3].request" type="text"></input>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="row fixed-bottom-right">
+            <button type="submit" class="btn btn-primary" value="Submit">Save</button>
+            <button type="submit" class="btn btn-default" value="Submit">Cancel</button>
+        </div>
+
+        <div class="row">
+            {{ application | json }}
+        </div>
+    </form>
+
+    <!-- <script>
+        $("#application-form").validate();
+    </script> -->
+
+    <!-- <div th:replace="fragments/dialogs/contact-form :: contact-dialog-form"></div> -->
+    <!-- <div th:replace="fragments/dialogs/address-list :: address-list-dialog"></div> -->
+
+</div>

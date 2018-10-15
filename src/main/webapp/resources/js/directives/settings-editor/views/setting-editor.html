@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-md-2 col-md-offset-10">
+        <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.toggleVisibility()">
+            Filters
+            <span class="glyphicon glyphicon-chevron-right" ng-hide="ctrl.visible"></span>
+            <span class="glyphicon glyphicon-chevron-down" ng-show="ctrl.visible"></span>
+        </button>
+        <button ng-show="ctrl.visible" class="btn btn-sm btn-info" type="button" ng-click="ctrl.resetFilters()">Reset Filters</button>
+    </div>
+</div>
+
+<div class="periods-filters row" ng-show="ctrl.visible">
+    <div class="form-group col-sm-12 col-md-3 row">
+        <label for="period" class="col-xs-4 col-sm-4 col-md-4 control-label">Setting</label>
+        <div class="col-xs-8 col-sm-8 col-md-8">
+            <input type="text" ng-model="filter.setting" class="form-control text ui-widget-content ui-corner-all" ng-change="ctrl.applyFilter()">
+        </div>
+    </div>
+
+    <div class="form-group col-sm-12 col-md-3 row">
+        <label for="title" class="col-xs-4 col-sm-4 col-md-4 control-label">Description</label>
+        <div class="col-xs-8 col-sm-8 col-md-8">
+            <input type="text" ng-model="filter.description" class="form-control text ui-widget-content ui-corner-all" ng-change="ctrl.applyFilter()">
+        </div>
+    </div>
+</div>
+<table class="table table-responsive table-hover">
+    <thead>
+        <th ng-click="ctrl.changeSort('setting')">Setting
+            <span ng-show="ctrl.isSortedAsc('setting')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('setting')"> &#x25B2;</span>
+        </th>
+        <th ng-click="ctrl.changeSort('value')">Value
+            <span ng-show="ctrl.isSortedAsc('value')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('value')"> &#x25B2;</span>
+        </th>
+        <th ng-click="ctrl.changeSort('description')">Description
+            <span ng-show="ctrl.isSortedAsc('description')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('description')"> &#x25B2;</span>
+        </th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="setting in settings|orderBy : ctrl.sortOrder | filter: ctrl.filterParams ">
+            <td>{{ setting.setting }}</td>
+            <td>{{ setting.value }}</td>
+            <td>{{ setting.description }}</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.editSettings(setting.id)">
+				<span class="glyphicon glyphicon-pencil"></span> Edit
+			</button>
+            </td>
+        </tr>
+
+
+    </tbody>
+</table>
+<button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.addSettings()">
+				<span class="glyphicon glyphicon-pencil"></span> Add
+			</button>

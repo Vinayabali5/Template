@@ -1,0 +1,55 @@
+<table class="table table-responsive table-hover">
+    <thead>
+        <th ng-show="ctrl.showAll || ctrl.showId">Course Group Id</th>
+        <th ng-show="ctrl.showAll || ctrl.showId">Course Id</th>
+        <th ng-show="ctrl.showAll || ctrl.showYear">Year</th>
+        <th ng-show="ctrl.showAll || ctrl.showYearGroup">Year Group</th>
+        <th ng-click="ctrl.changeSort('spec')">
+            Class Code
+            <span class="glyphicon glyphicon-sort-by-attributes" ng-show="ctrl.isSortedAsc('spec')"></span>
+            <span class="glyphicon glyphicon-sort-by-attributes-alt" ng-show="ctrl.isSortedDesc('spec')"></span>
+        </th>
+        <th ng-click="ctrl.changeSort('_departmentDescription')">
+            Department
+            <span class="glyphicon glyphicon-sort-by-attributes" ng-show="ctrl.isSortedAsc('_departmentDescription')"></span>
+            <span class="glyphicon glyphicon-sort-by-attributes-alt" ng-show="ctrl.isSortedDesc('_departmentDescription')"></span>
+        </th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th ng-show="ctrl.includeReports">Reports</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="courseGroup in ctrl.courseGroups | orderBy:ctrl.sortOrder | filter: ctrl.filterParams">
+            <td ng-show="ctrl.showAll || ctrl.showId">{{ courseGroup.id }}</td>
+            <td ng-show="ctrl.showAll || ctrl.showId">{{ courseGroup.courseId }}</td>
+            <td ng-show="ctrl.showAll || ctrl.showYear">{{ courseGroup._yearDescription }}</td>
+            <td ng-show="ctrl.showAll || ctrl.showYearGroup">{{ courseGroup._yearGroupDescription }}</td>
+            <td>{{ courseGroup.spec }}</td>
+            <td>{{ courseGroup._departmentDescription }}</td>
+            <td>{{ courseGroup.startDate | date:'dd/MM/yyyy' }}</td>
+            <td>{{ courseGroup.endDate | date:'dd/MM/yyyy' }}</td>
+            <td ng-show="ctrl.includeReports">
+                <report-link class="btn btn-sm btn-default" report-path="'/CID/Students/Class Lists/Class List with Various Information'" report-params="'CourseGroupMask='+courseGroup.spec" include-year="true">Class List</report-link>
+                <div class="btn-group">
+                    <button class="btn btn-sm btn-default dropdown-toggle" type="button" id="reports-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Reports <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="reports-menu">
+                        <li>
+                            <report-link report-path="'/CID/Students/Class Lists/Class List with Photos'" report-format="'PDF'" report-params="'AcademicYear=' + courseGroup.yearId + '&CourseGroupMask=' + courseGroup.spec">Class List with Photos</report-link>
+                        </li>
+                        <li>
+                            <report-link report-path="'/CID/Students/Class Lists/Class List - Mark Sheet'" report-toolbar="true" report-params="'CourseGroupMask='+courseGroup.spec">Mark Sheet</report-link>
+                        </li>
+                        <li>
+                            <report-link report-path="'/CID/Timetabling/Timetable Student - Column'" report-params="'CourseGroupMask='+courseGroup.spec" include-year="true">Student Timetable - Column</report-link>
+                        </li>
+                        <li>
+                            <report-link report-path="'/CID/Attendance Monitoring/Register between Dates'" report-params="'CourseGroupMask='+courseGroup.spec" include-year="true">Register between Dates</report-link>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr ng-show="ctrl.courseGroups.size() == 0">
+            <td row-span="3">No Results</td>
+        </tr>
+</table>

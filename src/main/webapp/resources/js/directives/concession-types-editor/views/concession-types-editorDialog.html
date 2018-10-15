@@ -1,0 +1,44 @@
+<form id="concessionTypesEditForm" name="concessionTypesEditForm" role="form" novalidate show-validation>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="ctrl.cancel()">&times;</button>
+        <h4 class="modal-title" id="myToDoLabel">Edit ConcessionType</h4>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+
+            <div class="form-group" ng-show="true">
+                <label for="id" class="col-xs-4 col-sm-4 col-md-4 control-label">ConcessionType ID</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input type="text" class="form-control" name="id" readonly ng-model="ctrl.concessionTypes.id">
+                </div>
+            </div>
+            <div class="form-group" ng-show="true">
+                <label for="code" class="col-xs-4 col-sm-4 col-md-4 control-label">Code</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input type="text" class="form-control" name="code" ng-model="ctrl.concessionTypes.code">
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="true">
+                <label for="description" class="col-xs-4 col-sm-4 col-md-4 control-label">Description:</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input type="text" class="form-control text ui-widget-content ui-corner-all" name="description" ng-model="ctrl.concessionTypes.description"></input>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="ctrl.cancel()">
+            <span class="glyphicon glyphicon-ban-circle"></span>
+            Cancel
+        </button>
+        <button type="button" class="btn btn-primary" ng-click="ctrl.save()">
+            <span class="glyphicon glyphicon-save"></span>
+            Save
+        </button>
+    </div>
+
+</form>

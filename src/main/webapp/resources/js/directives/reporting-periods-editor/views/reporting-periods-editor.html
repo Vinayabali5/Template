@@ -1,0 +1,29 @@
+<table class="table table-hover">
+    <thead>
+        <th> Id </th>
+        <th>AcademicYear</th>
+        <th ng-click="ctrl.changeSort('name')">Name
+            <span ng-show="ctrl.isSortedAsc('name')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('name')"> &#x25B2;</span>
+        </th>
+        <th>StartDate</th>
+        <th>EndDate</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="reportingPeriod in reportingPeriods |  orderBy:ctrl.sortOrder ">
+            <td>{{ reportingPeriod.id}}</td>
+            <td>{{ reportingPeriod.academicYearId }}</td>
+            <td>{{ reportingPeriod.name }}</td>
+            <td>{{ reportingPeriod.startDate | date:'dd/MM/yyyy' }}</td>
+            <td>{{ reportingPeriod.endDate | date:'dd/MM/yyyy' }}</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.editReportingPeriods(reportingPeriod.id)">
+					<span class="glyphicon glyphicon-pencil"></span> Edit
+				</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.addReportingPeriods()">
+				<span class="glyphicon glyphicon-pencil"></span> Add
+			</button>

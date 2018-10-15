@@ -1,0 +1,30 @@
+<div>
+    <div>
+        <legend>Applicant Search</legend>
+        <form class="search-form form-inline">
+            <label for="search">Name:</label> <input id="search" name="search" class="form-control input-sm" ng-model="searchTerm" />
+            <button type="submit" class="btn btn-sm btn-primary" ng-click="ctrl.search(searchTerm)">Search</button>
+        </form>
+    </div>
+    <div class="message">{{ ctrl.message }}</div>
+
+    <table class="table table-responsive table-bordered table-hover table-condensed">
+        <thead>
+            <th>Ref</th>
+            <th>Person</th>
+            <th>School</th>
+            <th>Status</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="a in ctrl.applicationList | orderBy : '+personName' " class="ng-cloak">
+                <td><a ui-sref="admissions.edit({ studentId:a.studentId })">{{ a.referenceNo }}</a></td>
+                <td>{{ a.personName }}</td>
+                <td>{{ a.schoolName }}</td>
+                <td>{{ a.status }}</td>
+            </tr>
+            <tr ng-show="ctrl.noResults">
+                <td colspan="4">No Results</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

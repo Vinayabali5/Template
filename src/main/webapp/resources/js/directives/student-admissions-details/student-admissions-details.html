@@ -1,0 +1,22 @@
+<div class="student-admissions-details">
+    <h4>Application Details</h4>
+    <admission-details student-admissions="ctrl.studentAdmissions"></admission-details>
+    <h4>Previous School Information</h4>
+    <previous-school-details student-admissions="ctrl.studentAdmissions"></previous-school-details>
+    <h4>Initial Interview Details</h4>
+    <interviewer-details student-admissions="ctrl.studentAdmissions"></interviewer-details>
+    <h4>Introductory Day/Choices Day/Enrolment Interview Details</h4>
+    <induction-details student-admissions="ctrl.studentAdmissions"></induction-details>
+    <h4>Notes</h4>
+    <div class="admission-notes container-fluid">
+        <div class="row">
+            <div class="col-xs-5 col-md-3">Admission Notes:</div>
+            <div class="col-xs-7 col-md-9">{{ ctrl.studentAdmissions.admissionsNotes}}</div>
+        </div>
+    </div>
+    <div class="admission-editor container-fluid">
+        <div class="row">
+            <student-admission-editor student-admission="ctrl.studentAdmissions"></student-admission-editor>
+        </div>
+    </div>
+</div>

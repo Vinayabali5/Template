@@ -1,0 +1,13 @@
+<div class="modal-body" data-role="page">
+    <div data-role="header">
+        <h3>Edi File Generator - Exam Series Selector</h3>
+    </div>
+
+    <div>
+        <exam-series-table exam-series-list="ctrl.examSeriesList">
+            <exam-series-check-box change-selected="ctrl.changeSelected(examSeriesListIndex, selected)"></exam-series-check-box>
+        </exam-series-table>
+
+        <button class="btn btn-primary btn-sm" ng-click="ctrl.generateEdiFiles()">Generate Edi Files</button>
+    </div>
+</div>

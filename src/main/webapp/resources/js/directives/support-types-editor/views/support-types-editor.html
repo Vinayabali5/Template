@@ -1,0 +1,23 @@
+<table class="table table-responsive table-hover">
+    <thead>
+        <th> Id </th>
+        <th ng-click="ctrl.changeSort('support')">Support
+            <span ng-show="ctrl.isSortedAsc('support')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('support')"> &#x25B2;</span>
+        </th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="supportType in supportTypes |  orderBy:ctrl.sortOrder ">
+            <td>{{ supportType.id}}</td>
+            <td>{{ supportType.support }}</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.editSupportTypes(supportType.id)">
+					<span class="glyphicon glyphicon-pencil"></span> Edit
+				</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.addSupportTypes()">
+				<span class="glyphicon glyphicon-pencil"></span> Add
+			</button>

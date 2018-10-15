@@ -1,0 +1,140 @@
+<form id="schoolsEditForm" name="schoolsEditForm" role="form" novalidate show-validation>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="ctrl.cancel()">&times;</button>
+        <h4 class="modal-title" id="myToDoLabel">Add/Edit School</h4>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <div class="form-group" ng-show="true">
+                <label for="id" class="col-xs-4 col-sm-4 col-md-4 control-label">School ID</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="id" type="text" class="form-control" name="id" readonly ng-model="ctrl.schools.id">
+                </div>
+            </div>
+            <div class="form-group" ng-show="true">
+                <label for="name" class="col-xs-4 col-sm-4 col-md-4 control-label">Name</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="name" type="text" class="form-control" name="name" ng-model="ctrl.schools.name">
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="true">
+                <label for="type" class="col-xs-4 col-sm-4 col-md-4 control-label">Type</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <school-type-selection class="form-control" include-blank="true" id="schooLType" readonly="setReadonly" ng-model="ctrl.schools.typeId"></school-type-selection>
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="true">
+                <label for="priority" class="col-xs-4 col-sm-4 col-md-4 control-label">Priority</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <school-priority-selection class="form-control" include-blank="true" id="schoolPriority" readonly="setReadonly" ng-model="ctrl.schools.priorityId"></school-priority-selection>
+                </div>
+            </div>
+
+            <div> <label for="priority">&nbsp;&nbsp;&nbsp;Address:</label></div>
+
+            <div class="form-group" ng-show="true">
+                <label for="line1" class="col-xs-4 col-sm-4 col-md-4 control-label">Line 1</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="line1" type="text" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.schools.line1"></input>
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="true">
+                <label for="line2" class="col-xs-4 col-sm-4 col-md-4 control-label">Line 2</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="line2" type="text" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.schools.line2"></input>
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="true">
+                <label for="line3" class="col-xs-4 col-sm-4 col-md-4 control-label">Line 3</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="line3" type="text" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.schools.line3"></input>
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="true">
+                <label for="postcode" class="col-xs-4 col-sm-4 col-md-4 control-label">Postcode</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="postcode" type="text" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.schools.postcode"></input>
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="true">
+                <label for="telephone" class="col-xs-4 col-sm-4 col-md-4 control-label">Telephone</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="startTime" type="text" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.schools.telephone"></input>
+                </div>
+            </div>
+
+            <div>&nbsp;</div>
+
+            <div class="form-group" ng-show="true">
+                <label for="headtitle" class="col-xs-4 col-sm-4 col-md-4 control-label">Head Title</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="headTitle" type="text" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.schools.headTitle"></input>
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="true">
+                <label for="headFirstName" class="col-xs-4 col-sm-4 col-md-4 control-label">Head FirstName</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="headFirstName" type="text" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.schools.headFirstName"></input>
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="true">
+                <label for="headFirstName" class="col-xs-4 col-sm-4 col-md-4 control-label">Head Surname</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="headFirstName" type="text" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.schools.headSurname"></input>
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="true">
+                <label for="headFirstName" class="col-xs-4 col-sm-4 col-md-4 control-label">Contact Title</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="headFirstName" type="text" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.schools.contactTitle"></input>
+                </div>
+            </div>
+
+
+            <div class="form-group" ng-show="true">
+                <label for="headFirstName" class="col-xs-4 col-sm-4 col-md-4 control-label">Contact FirstName</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="contactFirstName" type="text" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.schools.contactFirstName"></input>
+                </div>
+            </div>
+
+
+            <div class="form-group" ng-show="true">
+                <label for="headFirstName" class="col-xs-4 col-sm-4 col-md-4 control-label">Contact Surname</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="contactSurName" type="text" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.schools.contactSurname"></input>
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="true">
+                <label for="urn" class="col-xs-4 col-sm-4 col-md-4 control-label">URN</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="urn" type="text" class="form-control" name="urn" ng-model="ctrl.schools.urn">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="ctrl.cancel()">
+            <span class="glyphicon glyphicon-ban-circle"></span>
+            Cancel
+        </button>
+        <button type="button" class="btn btn-primary" ng-click="ctrl.save()">
+            <span class="glyphicon glyphicon-save"></span>
+            Save
+        </button>
+    </div>
+
+</form>

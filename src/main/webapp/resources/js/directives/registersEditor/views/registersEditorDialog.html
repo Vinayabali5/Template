@@ -1,0 +1,51 @@
+<form id="registerEditForm" name="registerEditForm" role="form" novalidate show-validation>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myToDoLabel">Edit a Register Mark</h4>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <div class="form-group hidden">
+                <label for="id" class="col-xs-4 col-sm-4 col-md-4 control-label">Student ID</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input type="text" class="form-control" name="studentId" id="field_id" readonly="true" ng-model="ctrl.register.studentId"></input>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="field_title" class="col-xs-4 col-sm-4 col-md-4 control-label">Session Ref</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="field_sessionRef" name="sessionRef" class="form-control text ui-widget-content ui-corner-all" readonly="true" ng-model="ctrl.register.sessionRef"></input>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="field_title" class="col-xs-4 col-sm-4 col-md-4 control-label">Subject Code</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="field_subjectCode" type="text" name="subjectCode" class="form-control text ui-widget-content ui-corner-all" readonly="true" ng-model="ctrl.register.subjectCode"></input>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="field_title" class="col-xs-4 col-sm-4 col-md-4 control-label">Group</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="field_group" type="text" name="group" class="form-control text ui-widget-content ui-corner-all" readonly="true" ng-model="ctrl.register.group"></input>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="field_title" class="col-xs-4 col-sm-4 col-md-4 control-label">Attendance code:</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <attendance-code-selection id="attendanceCode" class="form-control" ng-model="ctrl.register.attendanceId" required></attendance-code-selection>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="ctrl.cancel()"><span class="glyphicon glyphicon-ban-circle"></span> Cancel</button>
+        <button type="button" class="btn btn-primary" ng-disabled="registerEditForm.$invalid || registerEditForm.$submitted" ng-click="ctrl.save()"><span class="glyphicon glyphicon-save"></span> Save</button>
+    </div>
+
+</form>

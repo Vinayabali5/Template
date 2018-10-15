@@ -1,0 +1,30 @@
+<table class="table table-responsive table-hover">
+    <thead>
+        <th ng-click="ctrl.changeSort('code')">Code
+            <span ng-show="ctrl.isSortedAsc('code')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('code')"> &#x25B2;</span>
+        </th>
+        <th ng-click="ctrl.changeSort('description')">Description
+            <span ng-show="ctrl.isSortedAsc('description')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('description')"> &#x25B2;</span>
+        </th>
+        <th>Grade </th>
+        <th>UCAS Points</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="possibleGrade in possibleGrades | orderBy:ctrl.sortOrder">
+            <td>{{ possibleGrade._possibleGradeSet.code }}</td>
+            <td>{{ possibleGrade._possibleGradeSet.description }}</td>
+            <td>{{ possibleGrade.grade }}</td>
+            <td>{{ possibleGrade.ucasPoints}} </td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.editPossibleGrades(possibleGrade.id)">
+				<span class="glyphicon glyphicon-pencil"></span> Edit
+			</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.addPossibleGrades()">
+				<span class="glyphicon glyphicon-pencil"></span> Add
+			</button>

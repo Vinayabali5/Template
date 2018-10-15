@@ -1,0 +1,24 @@
+<div class="student-warning-details">
+    <div class="row">
+        <div class="col-xs-5">
+            Attendance Warning:
+        </div>
+        <div class="col-xs-7" ng-show="studentWarning.attendanceMonitoringId">
+            {{ studentWarning._attendanceMonitoringCode }}
+        </div>
+        <div class="col-xs-7" ng-hide="studentWarning.attendanceMonitoringId">
+            No Warning
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-5">
+            Punctuality Warning:
+        </div>
+        <div class="col-xs-7" ng-show="studentWarning.punctualityMonitoringId">
+            {{ studentWarning._punctualityMonitoringCode }}
+        </div>
+        <div class="col-xs-7" ng-hide="studentWarning.punctualityMonitoringId">
+            No Warning
+        </div>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+<div class="row">
+    <div class="col-md-2 col-md-offset-10">
+        <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.toggleVisibility()">
+            Filters
+            <span class="glyphicon glyphicon-chevron-right" ng-hide="ctrl.visible"></span>
+            <span class="glyphicon glyphicon-chevron-down" ng-show="ctrl.visible"></span>
+        </button>
+        <button ng-show="ctrl.visible" class="btn btn-sm btn-info" type="button" ng-click="ctrl.resetFilters()">Reset Filters</button>
+    </div>
+</div>
+
+<div class="periods-filters row" ng-show="ctrl.visible">
+    <div class="form-group col-sm-12 col-md-3 row">
+        <label for="period" class="col-xs-4 col-sm-4 col-md-4 control-label">Code</label>
+        <div class="col-xs-8 col-sm-8 col-md-8">
+            <input type="text" ng-model="filter.code" class="form-control text ui-widget-content ui-corner-all" ng-change="ctrl.applyFilter()">
+        </div>
+    </div>
+
+    <div class="form-group col-sm-12 col-md-3 row">
+        <label for="title" class="col-xs-4 col-sm-4 col-md-4 control-label">Description</label>
+        <div class="col-xs-8 col-sm-8 col-md-8">
+            <input type="text" ng-model="filter.description" class="form-control text ui-widget-content ui-corner-all" ng-change="ctrl.applyFilter()">
+        </div>
+    </div>
+
+    <div class="form-group col-sm-12 col-md-3 row">
+        <label for="block" class="col-xs-4 col-sm-4 col-md-4 control-label"> Block</label>
+        <div class="col-xs-8 col-sm-8 col-md-8">
+            <input type="text" ng-model="filter._blockDescription" class="form-control text ui-widget-content ui-corner-all" ng-change="ctrl.applyFilter()">
+        </div>
+    </div>
+</div>
+
+<table class="table table-responsive table-hover">
+    <thead>
+        <th ng-click="ctrl.changeSort('code')">Code
+            <span ng-show="ctrl.isSortedAsc('code')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('code')"> &#x25B2;</span>
+        </th>
+        <th>Description</th>
+        <th ng-click="ctrl.changeSort('_blockDescription')">Block
+            <span ng-show="ctrl.isSortedAsc('_blockDescription')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('_blockDescription')"> &#x25B2;</span>
+        </th>
+        <th ng-click="ctrl.changeSort('startTime')">Start Time
+            <span ng-show="ctrl.isSortedAsc('startTime')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('startTime')"> &#x25B2;</span>
+        </th>
+
+        <th ng-click="ctrl.changeSort('endTime')">End Time
+            <span ng-show="ctrl.isSortedAsc('endTime')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('endTime')"> &#x25B2;</span>
+        </th>
+        <th ng-click="ctrl.changeSort('day')">Day
+            <span ng-show="ctrl.isSortedAsc('day')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('day')"> &#x25B2;</span>
+        </th>
+        <th ng-click="ctrl.changeSort('dayPeriod')">Day Period
+            <span ng-show="ctrl.isSortedAsc('dayPeriod')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('dayPeriod')"> &#x25B2;</span>
+        </th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="period in periods | orderBy:ctrl.sortOrder | filter: ctrl.filterParams ">
+            <td>{{period.code}}</td>
+            <td>{{period.description}}</td>
+            <td>{{period._blockDescription}}</td>
+            <td>{{period.startTime |date:'HH:mm'}}</td>
+            <td>{{period.endTime |date:'HH:mm'}}</td>
+            <td>{{period.day}}</td>
+            <td>{{period.dayPeriod}}</td>
+            <td>
+                <button type='button' class="btn btn-primary btn-sm" ng-click="ctrl.editPeriods(period.id)">
+            <span class="glyphicon glyphicon-pencil"></span>Edit
+            </button>
+
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+<button type='button' class="btn btn-primary btn-sm" ng-click="ctrl.addPeriods()">
+            <span class="glyphicon glyphicon-pencil"></span>Add
+            </button>

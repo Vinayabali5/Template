@@ -1,0 +1,53 @@
+<div class="search-box course-search">
+    <div class="search-form">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="name">Search Course:</label>
+                <input id="name" type="text" class="form-control input-sm" ng-model="ctrl.searchText"></input>
+            </div>
+
+            <button name="search" class="btn btn-sm btn-primary" ng-click="ctrl.search()">Search</button>
+            <button id="toggle-course-results" class="btn btn-sm btn-info" type="button" ng-click="ctrl.toggleResults()" ng-disabled="!ctrl.hasResults()">Show/Hide Results</button>
+        </form>
+    </div>
+    <div class="message">{{ ctrl.message }}</div>
+    <div class="search-results" ng-show="ctrl.hasResults()">
+        <div id="course-results" class="collapsable" ng-show="ctrl.resultsVisible()">
+            <h4>Search Results </h4>
+            <table class="table table-responsive table-bordered table-hover table-condensed">
+                <thead>
+                    <th ng-click="ctrl.changeSort('spec')">
+                        Spec
+                        <span ng-show="ctrl.isSortedAsc('spec')"> &#x25BC;</span>
+                        <span ng-show="ctrl.isSortedDesc('spec')"> &#x25B2;</span>
+                    </th>
+                    <th ng-click="ctrl.changeSort('description')">
+                        Course
+                        <span ng-show="ctrl.isSortedAsc('description')"> &#x25BC;</span>
+                        <span ng-show="ctrl.isSortedDesc('description')"> &#x25B2;</span>
+                    </th>
+                    <th ng-click="ctrl.changeSort('_validFromDescription')">
+                        Vaild From
+                        <span ng-show="ctrl.isSortedAsc('_validFromDescription')"> &#x25BC;</span>
+                        <span ng-show="ctrl.isSortedDesc('_validFromDescription')"> &#x25B2;</span>
+                    </th>
+                    <th>Valid To</th>
+                    <th>Notes</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="result in ctrl.results | orderBy:ctrl.sortOrder track by $index">
+                        <td><a ng-click="ctrl.executeCallback({id: result.courseId})">{{ result.spec }}</a></td>
+                        <td>{{ result.description }}</td>
+                        <td>{{ result._validFromDescription }}</td>
+                        <td>{{ result._validToDescription }}</td>
+                        <td><span class="glyphicon glyphicon-info-sign" uib-tooltip="{{result.notes}}" ng-show="result.notes !== null"></span></td>
+                    </tr>
+                    <tr ng-show="!ctrl.hasResults()">
+                        <td colspan="2">No Results</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

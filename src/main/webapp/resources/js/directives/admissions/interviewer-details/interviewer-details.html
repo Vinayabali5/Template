@@ -1,0 +1,8 @@
+<div class="interviewer-details container-fluid">
+    <div class="row">
+        <div class="col-sm-5 col-md-3">Interviewer:</div>
+        <div class="col-sm-7 col-md-3">{{ studentAdmissions._interviewerName | notSet}}</div>
+        <div class="col-sm-5 col-md-3">Interview Date:</div>
+        <div class="col-sm-7 col-md-3">{{ studentAdmissions.interviewDate | date:'dd/MM/yyyy' | notSet }}</div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<table class="table table-responsive table-hover">
+    <thead>
+        <th ng-click="ctrl.changeSort('personId')">PersonId
+            <span ng-show="ctrl.isSortedAsc('personId')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('personId')"> &#x25B2;</span>
+        </th>
+        <th ng-click="ctrl.changeSort('note')">Note
+            <span ng-show="ctrl.isSortedAsc('note')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('note')"> &#x25B2;</span>
+        </th>
+        <th ng-click="ctrl.changeSort('typeId')">Note Type
+            <span ng-show="ctrl.isSortedAsc('typeId')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('typeId')"> &#x25B2;</span>
+
+        </th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="personNote in personNotes | orderBy : ctrl.sortOrder">
+            <td>{{ personNote.personId }}</td>
+            <td>{{ personNote.note }}</td>
+            <td>{{ personNote.typeId }}</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.editPersonNotes(personNote.id)">
+				<span class="glyphicon glyphicon-pencil"></span> Edit
+			</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.addPersonNotes()">
+    <span class="glyphicon glyphicon-pencil"></span> Add
+</button>

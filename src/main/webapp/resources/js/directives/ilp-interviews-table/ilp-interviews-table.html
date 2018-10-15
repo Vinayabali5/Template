@@ -1,0 +1,36 @@
+<table class="table table-responsive table-hover">
+    <thead>
+        <th ng-show="showAll">Student ID</th>
+        <th>Interview Type</th>
+        <th ng-show="showAll || showCourse">Course Spec</th>
+        <th ng-show="showAll || showCourse">Course</th>
+        <th ng-show="showAll || showCourseGroup">Course Group Spec</th>
+        <th>Discussion</th>
+        <th ng-show="showAll || showTargets">Target</th>
+        <th ng-show="showAll || showTargets">Deadline</th>
+        <th ng-show="showAll || showStaff">Staff</th>
+        <th>Interview Date</th>
+        <th ng-show="showAll">Interview Time</th>
+        <th ng-show="showAll || showLip">Refer Lip</th>
+        <th ng-show="showAll || showLip">LIP Refer Date</th>
+        <th ng-show="showAll || showLetterHome">Letter Home</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="ilpInterview in ilpInterviews | orderBy:'-interviewDate' | filter:interviewFilter">
+            <td ng-show="showAll">{{ ilpInterview.studentId }}</td>
+            <td>{{ ilpInterview._ilpInterviewTypeDescription}}</td>
+            <td ng-show="showAll || showCourse">{{ ilpInterview._courseSpec }}</td>
+            <td ng-show="showAll || showCourse">{{ ilpInterview._courseDescription }}</td>
+            <td ng-show="showAll || showCourseGroup">{{ ilpInterview._courseGroupSpec }}</td>
+            <td>{{ ilpInterview.discussion }}</td>
+            <td ng-show="showAll || showTargets">{{ ilpInterview.target }}</td>
+            <td ng-show="showAll || showTargets">{{ ilpInterview.targetByWhen | notSet }}</td>
+            <td ng-show="showAll || showStaff">{{ ilpInterview._staffName }}</td>
+            <td>{{ ilpInterview.interviewDate | date:'dd/MM/yyyy' }}</td>
+            <td ng-show="showAll">{{ ilpInterview.interviewTime }}</td>
+            <td ng-show="showAll || showLip">{{ ilpInterview.referLip }}</td>
+            <td ng-show="showAll || showLip">{{ ilpInterview.lipReferDate | date:'dd/MM/yyyy' }}</td>
+            <td ng-show="showAll || showLetterHome">{{ ilpInterview._letterSentHome | yesNo }}</td>
+        </tr>
+    </tbody>
+</table>

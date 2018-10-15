@@ -1,0 +1,75 @@
+<div>
+    <table id="basedataTable" class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Exam Year</th>
+                <th>Exam Series</th>
+                <th colspan="2">Exam Board</th>
+                <th ng-if="ctrl.pageable" ng-click="ctrl.setSort('code');">
+                    <a href>Code
+						<span ng-show="ctrl.paginationInfo.sort=='code'">
+							<span ng-show="!ctrl.orderReverse" class="glyphicon glyphicon-triangle-top"></span>
+							<span ng-show="ctrl.orderReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+						</span>
+					</a>
+                </th>
+                <th ng-if="ctrl.pageable" ng-click="ctrl.setSort('title');">
+                    <a href>Title
+						<span ng-show="ctrl.paginationInfo.sort=='title'">
+							<span ng-show="!ctrl.orderReverse" class="glyphicon glyphicon-triangle-top"></span>
+							<span ng-show="ctrl.orderReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+						</span>
+					</a>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat-start="syllabus in ctrl.syllabusList
+            | filter:filterParams
+            | orderBy:ctrl.paginationInfo.order
+            | limitTo:ctrl.paginationInfo.pageSize:ctrl.paginationInfo.startItem" class="ng-cloak">
+                <td>
+                    <div ng-init="syllabus._expanded = false">
+                        <expand visible="true" expandable="ctrl.expandable" expanded="syllabus._expanded"></expand>
+                    </div>
+                </td>
+                <td>{{ syllabus.examSeries.examYear }}</td>
+                <td>{{ syllabus.examSeries.examSeries }}</td>
+                <td>{{ syllabus.examSeries.examBoard.boardIdentifier }}</td>
+                <td>{{ syllabus.examSeries.examBoard.description }}</td>
+                <td ng-show="syllabus.code">{{ syllabus.code }}</td>
+                <td ng-show="syllabus.title">{{ syllabus.title }}</td>
+                <td>
+                    <ng-transclude></ng-transclude>
+                </td>
+            </tr>
+            <tr ng-if="(syllabus._expanded) || (ctrl.expandable == false)" ng-repeat-end="">
+                <td colspan="8">
+                    <option-table syllabus-id="syllabus.id" expandable="ctrl.expandable">
+                        <ng-transclude></ng-transclude>
+                    </option-table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div ng-if="(ctrl.pageable)">
+        <div class="col-xs-8 col-sm-8 col-md-8">
+            <ul uib-pagination boundary-links="true" boundary-link-numbers="true" force-ellipses="false" direction-links="false" rotate="true" items-per-page="ctrl.paginationInfo.pageSize" max-size="ctrl.paginationInfo.maxSize" total-items="ctrl.paginationInfo.totalItems"
+                ng-model="ctrl.paginationInfo.pageNumber" ng-change="ctrl.pageChanged()" class="pagination-sm"></ul>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4">
+            <label for="num-items-per-page" class="col-xs-5 col-sm-5 col-md-5 control-label">Syllabi per page</label>
+            <div class="col-xs-2 col-sm-2 col-md-2">
+                <select id="num-items-per-page" class="form-control ui-widget-content ui-corner-all" ng-model="ctrl.paginationInfo.pageSize" ng-change="ctrl.pageChanged()">
+    				<option ng-value="10">10</option>
+    				<option ng-value="25">25</option>
+    				<option ng-value="40">40</option>
+    			</select>
+            </div>
+        </div>
+
+    </div>
+</div>

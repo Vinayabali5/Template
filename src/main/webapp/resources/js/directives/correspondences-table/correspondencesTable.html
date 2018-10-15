@@ -1,0 +1,42 @@
+<div class="form-group col-md-12 col-sm-12">
+    <table class="table table-responsive table-hover">
+        <thead>
+            <th ng-show="showAll">Admission Number</th>
+            <th ng-show="showAll">CourseId</th>
+            <th>CourseGroupSpec</th>
+            <th>CourseGroupDescription</th>
+            <th>Correspondence</th>
+            <th>MessageTitle</th>
+            <th>Date</th>
+            <th>From</th>
+            <th>To</th>
+            <th ng-show="showAll">LetterId</th>
+            <th ng-show="showAll">StaffAdvised</th>
+            <th>CorrespondenceType</th>
+            <th>ProducedBy</th>
+            <th> PrivateEntry</th>
+            <th ng-show="showAll">ProcessStage</th>
+            <th ng-show="showAll">AttachmentsSent</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="correspondence in correspondences">
+                <td ng-show="showAll">{{ correspondence.studentId }}</td>
+                <td ng-show="showAll">{{ correspondence.courseId }}</td>
+                <td>{{ correspondence._courseGroupSpec }}</td>
+                <td>{{ correspondence._courseGroupDescription }}</td>
+                <td>{{ correspondence.correspondence }}</td>
+                <td>{{ correspondence.title }}</td>
+                <td>{{ correspondence.date | date:'dd/MM/yyyy' }}</td>
+                <td>{{ correspondence.from }}</td>
+                <td>{{ correspondence.to }}</td>
+                <td ng-show="showAll">{{ correspondence.letterId }}</td>
+                <td ng-show="showAll">{{ correspondence.staffAdvised }}</td>
+                <td>{{ correspondence._type }}</td>
+                <td>{{ correspondence.producedBy }}</td>
+                <td>{{ correspondence.privateEntry | yesNo }}</td>
+                <td ng-show="showAll">{{ correspondence.processStage }}</td>
+                <td ng-show="showAll">{{ correspondence.attachmentsSent }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

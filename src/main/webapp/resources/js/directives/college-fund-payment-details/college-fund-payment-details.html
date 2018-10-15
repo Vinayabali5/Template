@@ -1,0 +1,26 @@
+<div class="college-fund-payment-details container-fluid">
+    <div class="row">
+        <table class="table table-responsive table-hover">
+            <thead>
+                <th ng-show="showAll || showStudent">StudentId</th>
+                <th>Payment Date</th>
+                <th>Amount</th>
+                <th>Cheque Date</th>
+                <th>Payee</th>
+                <th>GiftAid</th>
+                <th>Cash</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="collegeFundPayment in collegeFundPayment | orderBy:['-paymentDate']">
+                    <td ng-show="showAll || showStudent">{{ collegeFundPayment.studentId }}</td>
+                    <td>{{ collegeFundPayment.paymentDate | date:'dd/MM/yyyy'}}</td>
+                    <td>{{ collegeFundPayment.amount }}</td>
+                    <td>{{ collegeFundPayment.chequeDate | date:'dd/MM/yyyy' }}</td>
+                    <td>{{ collegeFundPayment.payee }}</td>
+                    <td>{{ collegeFundPayment.giftAid | yesNo }}</td>
+                    <td>{{ collegeFundPayment.cash | yesNo }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

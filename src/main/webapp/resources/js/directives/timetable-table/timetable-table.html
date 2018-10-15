@@ -1,0 +1,41 @@
+<div class="search-box timetable-search">
+    <div class="search-form">
+        <form class="form-inline">
+
+            <div class="form-group">
+                <label for="staffId">StaffId:</label>
+                <input type="text" name="staffId" class="form-control input-sm" ng-model="ctrl.staffId">
+            </div>
+
+
+            <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.loadTimetable()">Search</button>
+        </form>
+    </div>
+
+    <div class="row">
+        <table class="table table-responsive table-hover">
+            <thead>
+                <th>Period</th>
+                <th>Room</th>
+                <th>Teacher</th>
+                <th>Course Group Information</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Valid From</th>
+                <th>Valid To</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="timetable in ctrl.timetable">
+                    <td>{{ timetable._period.description}}</td>
+                    <td>{{ timetable._room.description }}</td>
+                    <td>{{ timetable._teacherInitials }}</td>
+                    <td>{{ timetable._courseGroupSpec }}</td>
+                    <td>{{ timetable._period.startTime |date:'HH:mm' }}</td>
+                    <td>{{ timetable._period.endTime |date:'HH:mm' }}</td>
+                    <td>{{ timetable.validFrom | date:'dd/MM/yyyy' }}</td>
+                    <td>{{ timetable.validTo | date:'dd/MM/yyyy' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

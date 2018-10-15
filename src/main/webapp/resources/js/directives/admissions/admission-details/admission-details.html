@@ -1,0 +1,8 @@
+<div class="admission-details container-fluid">
+    <div class="row">
+        <div class="col-sm-5 col-md-3">Year Applied:</div>
+        <div class="col-sm-7 col-md-3">{{ studentAdmissions.yearApplied.description | notSet}}</div>
+        <div class="col-sm-5 col-md-3">Application Received:</div>
+        <div class="col-sm-7 col-md-3">{{ studentAdmissions.received | date :'dd/MM/yyyy' | notSet}}</div>
+    </div>
+</div>

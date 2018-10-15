@@ -1,0 +1,41 @@
+<table class="table table-responsive table-hover">
+    <thead>
+        <th ng-show="showAll || showId">Enrolment Id</th>
+        <th ng-show="showAll || showStudent">Student</th>
+        <th ng-show="showAll || showYear">Year</th>
+        <th>Course</th>
+        <th>Class Code</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th ng-show="showAll">Aim Type</th>
+        <th ng-show="showAll || showStatus">Completion Status</th>
+        <th ng-show="showAll || showOutcome">Outcome</th>
+        <th>Grade</th>
+        <th ng-show="showAll || showMonitoring">Entry Status</th>
+        <th>Actions</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="enrolment in ctrl.enrolments | orderBy : ['-endDate', '+_courseReference', '-startDate']">
+            <td ng-show="showAll || showId">{{ enrolment.enrolmentId }}</td>
+            <td ng-show="showAll || showStudent">{{ enrolment.studentId }}</td>
+            <td ng-show="showAll || showYear">{{ enrolment._academicYearCode }}</td>
+            <td>{{ enrolment._courseReference }} - {{ enrolment._levelDescription }} {{ enrolment._subjectDescription }}</td>
+            <td>{{ enrolment._courseGroupReference }}</td>
+            <td>{{ enrolment.startDate | date:'dd/MM/yyyy' }}</td>
+            <td>{{ enrolment.endDate | date:'dd/MM/yyyy' }}</td>
+            <td ng-show="showAll">{{ enrolment._aimType.shortDescription }}</td>
+            <td ng-show="showAll || showStatus">{{ enrolment._completionStatus.shortDescription }}</td>
+            <td ng-show="showAll || showOutcome">{{ enrolment._outcome.shortDescription }}</td>
+            <td>{{ enrolment.grade }}</td>
+            <td ng-show="showAll || showMonitoring">{{ enrolment._centralMonitoring.description }}</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.editEnrolment(enrolment.enrolmentId)"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+                <!--             	<button class="btn btn-default btn-sm" ng-click="ctrl.groupChange(enrolment)" ng-hide="enrolment.endDate !== null" data-toggle="tooltip" data-placement="top" title="Group Change">GC</button> -->
+                <!--             	<button class="btn btn-default btn-sm" ng-click="ctrl.courseChange(enrolment)" ng-hide="enrolment.endDate !== null" data-toggle="tooltip" data-placement="top" title="Course Change">CC</button> -->
+                <button class="btn btn-default btn-sm" ng-click="ctrl.withdraw(enrolment)" ng-hide="enrolment.endDate !== null" data-toggle="tooltip" data-placement="top" title="Withdraw">WD</button>
+            </td>
+        </tr>
+        <tr ng-show="enrolments.size() == 0">
+            <td row-span="5">No Results</td>
+        </tr>
+</table>

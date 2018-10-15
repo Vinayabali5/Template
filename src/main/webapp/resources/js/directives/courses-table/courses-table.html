@@ -1,0 +1,63 @@
+<table class="table table-responsive table-hover">
+    <thead>
+        <th ng-show="showAll || showId" ng-click="ctrl.changeSort('id')">
+            Course Id
+            <span class="glyphicon glyphicon-sort-by-attributes" ng-show="ctrl.isSortedAsc('id')"></span>
+            <span class="glyphicon glyphicon-sort-by-attributes-alt" ng-show="ctrl.isSortedDesc('id')"></span>
+        </th>
+        <th ng-click="ctrl.changeSort('spec')">
+            Spec
+            <span class="glyphicon glyphicon-sort-by-attributes" ng-show="ctrl.isSortedAsc('spec')"></span>
+            <span class="glyphicon glyphicon-sort-by-attributes-alt" ng-show="ctrl.isSortedDesc('spec')"></span>
+        </th>
+        <th ng-click="ctrl.changeSort('_levelDescription')">
+            Level
+            <span class="glyphicon glyphicon-sort-by-attributes" ng-show="ctrl.isSortedAsc('_levelDescription')"></span>
+            <span class="glyphicon glyphicon-sort-by-attributes-alt" ng-show="ctrl.isSortedDesc('_levelDescription')"></span>
+        </th>
+        <th iui-resize="{width: 0.5}" ng-click="ctrl.changeSort('_subjectDescription')">
+            Subject
+            <span class="glyphicon glyphicon-sort-by-attributes" ng-show="ctrl.isSortedAsc('_subjectDescription')"></span>
+            <span class="glyphicon glyphicon-sort-by-attributes-alt" ng-show="ctrl.isSortedDesc('_subjectDescription')"></span>
+        </th>
+        <th ng-show="showAll || showExamBoard" ng-click="ctrl.changeSort('_examBoardDescription')">
+            Exam Board
+            <span class="glyphicon glyphicon-sort-by-attributes" ng-show="ctrl.isSortedAsc('_examBoardDescription')"></span>
+            <span class="glyphicon glyphicon-sort-by-attributes-alt" ng-show="ctrl.isSortedDesc('_examBoardDescription')"></span>
+        </th>
+        <th ng-show="showAll || showYear">Valid From</th>
+        <th ng-show="showAll || showYear">Valid To</th>
+        <th ng-show="showAll || showDetails">QAN</th>
+        <th ng-show="showReports">Reports</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="course in courses | orderBy:ctrl.sortOrder | filter : filterParams">
+            <td ng-show="showAll || showId">{{ course.id }}</td>
+            <td><a href="#" ui-sref="course-record.view({courseId:course.id})">{{ course.spec }}</a></td>
+            <td>{{ course._levelDescription }}</td>
+            <td>{{ course._subjectDescription }}</td>
+            <td ng-show="showAll || showExamBoard">{{ course._examBoardDescription | notSet }}</td>
+            <td ng-show="showAll || showYear">{{ course._validFromCode | notSet }}</td>
+            <td ng-show="showAll || showYear">{{ course._validToCode | notSet }}</td>
+            <td ng-show="showAll || showDetails">{{ course.learningAimReference | notSet }}</td>
+            <td ng-show="showReports">
+                <div class="btn-group">
+                    <button class="btn btn-sm btn-default dropdown-toggle" type="button" id="reports-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Reports <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="reports-menu">
+                        <li>
+                            <report-link report-path="'/CID/TimeTabling/Timetable Course - Column'" include-year="true" report-params="'CourseGroupMask=%'+course.spec +'%'">Timetables Course Column</report-link>
+                        </li>
+                        <li>
+                            <report-link report-path="'/CID/TimeTabling/Timetable Course - Square'" report-params="'CourseSpec='+course.spec">Timetables Course - Square</report-link>
+                        </li>
+                        <li>
+                            <report-link report-path="'/CID/Attendance Monitoring/Register between Dates'" report-params="'CourseGroupMask=%'+course.spec+'%'" include-year="true">Register between Dates</report-link>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr ng-show="courses.size() == 0">
+            <td row-span="0">No Results</td>
+        </tr>
+</table>

@@ -1,0 +1,13 @@
+<div>
+    <div>
+        <button type="button" class="close" aria-hidden="true" ng-click="callback(student)" uib-tooltip-template="'/js/directives/exams/seatingPlanSeat/seatingPlanSeatCloseButtonTooltip.html'" tooltip-placement="left">&times;</button>
+        <div layout="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">{{student.label}}</div>
+            <div class="col-sm-6-col-md-6 col-lg-6">{{student.student[0]._candidateNo}}</div>
+        </div>
+        <div layout="row">
+            <div class="col-sm-6 col-md-6 col-lg-6" ng-show="student.student[0]._surname">{{student.student[0]._surname + ', ' + student.student[0]._firstName}}</div>
+            <div class="col-sm-6-col-md-6 col-lg-6">{{student.student[0]._examComponentCode}}</div>
+        </div>
+    </div>
+</div>

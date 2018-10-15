@@ -1,0 +1,27 @@
+<div class="form-group col-md-12 col-sm-12">
+    <table class="table table-hover">
+        <thead>
+            <th ng-show="showAll || showStudent">Student</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Duration</th>
+            <th>Details</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="studentLearningSupportVisit in ctrl.studentLearningSupportVisits">
+                <td ng-show="showAll || showStudent">{{ studentLearningSupportVisit.studentId }}</td>
+                <td>{{ studentLearningSupportVisit.date | date:'dd/MM/yyyy' }}</td>
+                <td>{{ studentLearningSupportVisit.time | date: "HH:mm:ss" }}</td>
+                <td>{{ studentLearningSupportVisit.duration }}</td>
+                <td>{{ studentLearningSupportVisit.details }}</td>
+                <td>
+                    <button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.editStudentLearningSupportVisit(studentLearningSupportVisit.id)">
+					    <span class="glyphicon glyphicon-pencil"></span> Edit
+				    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-primary" ng-click="ctrl.addStudentLearningSupportVisit(ctrl.studentId)">Add</button>
+</div>

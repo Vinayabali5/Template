@@ -1,0 +1,59 @@
+<table class="table table-responsive table-hover">
+    <thead>
+        <th ng-show="showAll || showId">Enrolment Id</th>
+        <th ng-show="showAll || showYear">Year</th>
+        <th ng-show="showAll || showStudent" ng-click="ctrl.changeSort('studentId')">Student ID
+            <span ng-show="ctrl.isSortedAsc('studentId')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('studentId')"> &#x25B2;</span>
+
+        </th>
+        <th ng-show="showAll || showStudent" ng-click="ctrl.changeSort('student.person.surname')">Student Name
+            <span ng-show="ctrl.isSortedAsc('student.person.surname')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('student.person.surname')"> &#x25B2;</span>
+
+        </th>
+        <th ng-click="ctrl.changeSort('_courseReference')">Course
+            <span ng-show="ctrl.isSortedAsc('_courseReference')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('_courseReference')"> &#x25B2;</span>
+
+        </th>
+        <th ng-click="ctrl.changeSort('_courseGroupReference')">Class Code
+            <span ng-show="ctrl.isSortedAsc('_courseGroupReference')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('_courseGroupReference')"> &#x25B2;</span>
+
+        </th>
+        <th ng-click="ctrl.changeSort('startDate')">Start Date
+            <span ng-show="ctrl.isSortedAsc('startDate')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('startDate')"> &#x25B2;</span>
+
+        </th>
+        <th ng-click="ctrl.changeSort('endDate')">EndDate
+            <span ng-show="ctrl.isSortedDesc('endDate')"> &#x25B2;</span>
+            <span ng-show="ctrl.isSortedAsc('endDate')"> &#x25BC;</span>
+        </th>
+        <th ng-show="showAll">Aim Type</th>
+        <th ng-show="showAll || showStatus">Completion Status</th>
+        <th ng-show="showAll">Outcome</th>
+        <th>Grade</th>
+        <th ng-show="showAll || showMonitoring">Entry Status</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="enrolment in enrolments | orderBy : ctrl.sortOrder">
+            <td ng-show="showAll || showId">{{ enrolment.enrolmentId }}</td>
+            <td ng-show="showAll || showYear">{{ enrolment._academicYearCode }}</td>
+            <td ng-show="showAll || showStudent">{{ enrolment.studentId }}</td>
+            <td ng-show="showAll || showStudent">{{ enrolment.student.person.surname }}, {{ enrolment.student.person.preferredName != null ? enrolment.student.person.preferredName : enrolment.student.person.firstName }}</td>
+            <td>{{ enrolment._courseReference }} - {{ enrolment._levelDescription }} {{ enrolment._subjectDescription }} </td>
+            <td>{{ enrolment._courseGroupReference }}</td>
+            <td>{{ enrolment.startDate | date:'dd/MM/yyyy' }}</td>
+            <td>{{ enrolment.endDate | date:'dd/MM/yyyy' }}</td>
+            <td ng-show="showAll">{{ enrolment._aimType.shortDescription }}</td>
+            <td ng-show="showAll || showStatus">{{ enrolment._completionStatus.shortDescription }}</td>
+            <td ng-show="showAll">{{ enrolment._outcome.shortDescription }}</td>
+            <td>{{ enrolment.grade }}</td>
+            <td ng-show="showAll || showMonitoring">{{ enrolment._centralMonitoring.description }}</td>
+        </tr>
+        <tr ng-show="enrolments.size() == 0">
+            <td row-span="5">No Results</td>
+        </tr>
+</table>

@@ -1,0 +1,23 @@
+<table class="table table-responsive table-hover">
+    <thead>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Template Text</th>
+        <th>In Use</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="letterTemplate in letterTemplates">
+            <td>{{ letterTemplate.name }}</td>
+            <td>{{ letterTemplate.description }}</td>
+            <td>{{ letterTemplate.templateText }}</td>
+            <td>{{ letterTemplate.inUse | yesNo}}</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.editLetterTemplate(letterTemplate.id)">
+				<span class="glyphicon glyphicon-pencil"></span> Edit
+			</button>
+            </td>
+        </tr>
+</table>
+<button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.addLetterTemplate()">
+				<span class="glyphicon glyphicon-pencil"></span> Add
+</button>

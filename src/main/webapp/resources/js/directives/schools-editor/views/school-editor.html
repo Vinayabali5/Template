@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-md-2 col-md-offset-10">
+        <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.toggleVisibility()">
+            Filters
+            <span class="glyphicon glyphicon-chevron-right" ng-hide="ctrl.visible"></span>
+            <span class="glyphicon glyphicon-chevron-down" ng-show="ctrl.visible"></span>
+        </button>
+        <button ng-show="ctrl.visible" class="btn btn-sm btn-info" type="button" ng-click="ctrl.resetFilters()">Reset Filters</button>
+    </div>
+</div>
+
+<div class="periods-filters row" ng-show="ctrl.visible">
+    <div class="form-group col-sm-12 col-md-3 row">
+        <label for="name" class="col-xs-4 col-sm-4 col-md-4 control-label">Name</label>
+        <div class="col-xs-8 col-sm-8 col-md-8">
+            <input type="text" ng-model="filter.name" class="form-control text ui-widget-content ui-corner-all" ng-change="ctrl.applyFilter()">
+        </div>
+    </div>
+
+    <div class="form-group col-sm-12 col-md-3 row">
+        <label for="title" class="col-xs-4 col-sm-4 col-md-4 control-label">Type</label>
+        <div class="col-xs-8 col-sm-8 col-md-8">
+            <input type="text" ng-model="filter._typeDescription" class="form-control text ui-widget-content ui-corner-all" ng-change="ctrl.applyFilter()">
+        </div>
+    </div>
+</div>
+<table class="table table-responsive table-hover">
+    <thead>
+        <th ng-click="ctrl.changeSort('name')">Name
+            <span ng-show="ctrl.isSortedAsc('name')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('name')"> &#x25B2;</span>
+        </th>
+        <th ng-click="ctrl.changeSort('_typeDescription')">Type
+            <span ng-show="ctrl.isSortedAsc('_typeDescription')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('_typeDescription')"> &#x25B2;</span>
+        </th>
+        <th ng-click="ctrl.changeSort('_priorityCode')">Priority
+            <span ng-show="ctrl.isSortedAsc('_priorityCode')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('_priorityCode')"> &#x25B2;</span>
+        </th>
+        <th>Address</th>
+        <th>Telephone</th>
+        <th>Head</th>
+        <th>Contact Name</th>
+        <th>URN</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="school in schools |orderBy : ctrl.sortOrder | filter: ctrl.filterParams ">
+            <td>{{school.name}}</td>
+            <td>{{school._typeDescription}}</td>
+            <td>{{school._priorityCode}}</td>
+            <td>{{school.line1}}<br>{{school.line2}}<br>{{school.line3}}<br>{{school.postcode}}</td>
+            <td>{{school.telephone}}</td>
+            <td>{{school.headTitle}} {{school.headFirstName}} {{school.headSurname}}</td>
+            <td>{{school.contactTitle}} {{school.contactFirstName}} {{school.contactSurname}}</td>
+            <td>{{school.urn}}</td>
+            <td>
+                <button type='button' class="btn btn-primary btn-sm" ng-click="ctrl.editSchools(school.id)">
+            		<span class="glyphicon glyphicon-pencil"></span>Edit
+            	</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button type='button' class="btn btn-primary btn-sm" ng-click="ctrl.addSchools()">
+            		<span class="glyphicon glyphicon-pencil"></span>Add
+            	</button>

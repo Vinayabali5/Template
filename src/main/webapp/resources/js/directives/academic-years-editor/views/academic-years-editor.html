@@ -1,0 +1,44 @@
+<table class="table table-responsive table-hover">
+    <thead>
+        <th ng-click="ctrl.changeSort('id')" ng-show="showID || showAll">ID
+            <span ng-show="ctrl.isSortedAsc('id')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('id')"> &#x25B2;</span>
+        </th>
+        <th ng-click="ctrl.changeSort('code')">Code
+            <span ng-show="ctrl.isSortedAsc('code')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('code')"> &#x25B2;</span>
+        </th>
+        <th ng-click="ctrl.changeSort('description')">Description
+            <span ng-show="ctrl.isSortedAsc('description')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('description')"> &#x25B2;</span>
+
+        </th>
+        <th ng-click="ctrl.changeSort('startDate')">Start Date
+            <span ng-show="ctrl.isSortedAsc('startDate')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('startDate')"> &#x25B2;</span>
+
+        </th>
+        <th ng-click="ctrl.changeSort('EndDate')">End Date
+            <span ng-show="ctrl.isSortedAsc('EndDate')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('EndDate')"> &#x25B2;</span>
+
+        </th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="academicYear in academicYears | orderBy : ctrl.sortOrder">
+            <td ng-show="showID || showAll">{{ academicYear.id }}</td>
+            <td>{{ academicYear.code }}</td>
+            <td>{{ academicYear.description }}</td>
+            <td>{{ academicYear.startDate | date:'dd/MM/yyyy' }}</td>
+            <td>{{ academicYear.endDate | date:'dd/MM/yyyy' }}</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.editAcademicYears(academicYear.id)">
+				<span class="glyphicon glyphicon-pencil"></span> Edit
+			</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.addAcademicYears()">
+				<span class="glyphicon glyphicon-pencil"></span> Add
+			</button>

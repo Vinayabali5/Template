@@ -1,0 +1,8 @@
+<div ng-if="visible > 0">
+    <button ng-if="expanded && expandable" ng-click="collapse()" class="btn btn-default btn-sm">
+		<span class="glyphicon glyphicon-minus"></span>
+	</button>
+    <button ng-if="!expanded && expandable" ng-click="expand()" class="btn btn-default btn-sm">
+		<span class="glyphicon glyphicon-plus"></span>
+	</button>
+</div>

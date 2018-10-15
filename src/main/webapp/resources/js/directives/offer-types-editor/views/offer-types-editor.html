@@ -1,0 +1,26 @@
+<table class="table table-responsive table-hover">
+    <thead>
+        <th ng-click="ctrl.changeSort('code')">Code
+            <span ng-show="ctrl.isSortedAsc('code')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('code')"> &#x25B2;</span>
+        </th>
+        <th ng-click="ctrl.changeSort('description')">Description
+            <span ng-show="ctrl.isSortedAsc('description')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('description')"> &#x25B2;</span>
+        </th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="offerType in offerTypes |  orderBy:ctrl.sortOrder ">
+            <td>{{ offerType.code }}</td>
+            <td>{{ offerType.description }}</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.editOfferTypes(offerType.id)">
+					<span class="glyphicon glyphicon-pencil"></span> Edit
+				</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.addOfferTypes()">
+				<span class="glyphicon glyphicon-pencil"></span> Add
+			</button>

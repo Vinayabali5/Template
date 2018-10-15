@@ -1,0 +1,66 @@
+<form id="staffsEditForm" name="staffsEditForm" role="form" novalidate show-validation>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="ctrl.cancel()">&times;</button>
+        <h4 class="modal-title" id="myToDoLabel">Add/Edit Staff</h4>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <div class="form-group" ng-show="true">
+                <label for="id" class="col-xs-4 col-sm-4 col-md-4 control-label">Staff ID</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="id" type="text" class="form-control" name="id" readonly ng-model="ctrl.staffs.id">
+                </div>
+            </div>
+            <div class="form-group" ng-show="true">
+                <label for="initials" class="col-xs-4 col-sm-4 col-md-4 control-label">Initials</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="initials" type="text" class="form-control" name="initials" ng-model="ctrl.staffs.initials">
+                </div>
+            </div>
+            <div class="form-group" ng-show="true">
+                <label for="code" class="col-xs-4 col-sm-4 col-md-4 control-label">KnownAs</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="code" type="text" class="form-control" name="id" ng-model="ctrl.staffs.knownAs">
+                </div>
+            </div>
+            <div class="form-group" ng-show="true">
+                <label for="networkLogin" class="col-xs-4 col-sm-4 col-md-4 control-label">Network Login</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="networkLogin" type="text" class="form-control" name="networkLogin" ng-model="ctrl.staffs.networkLogin">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <th>Roles</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="s in ctrl.staffs.person.roles">
+                <td>{{ s.roleName }}
+        </tbody>
+    </table>
+
+    <div class="form-group">
+        <label for="role" class="col-xs-4 col-sm-4 col-md-4 control-label">Add Roles:</label>
+        <div class="col-xs-8 col-sm-8 col-md-8">
+            <role-selection id="role" class="form-control" ng-model="ctrl.staffs.person.roles.id"></role-selection>
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary" ng-click="ctrl.add()"><span class="glyphicon glyphicon-save"></span> Add</button>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="ctrl.cancel()">
+            <span class="glyphicon glyphicon-ban-circle"></span>
+            Cancel
+        </button>
+        <button type="button" class="btn btn-primary" ng-click="ctrl.save()">
+            <span class="glyphicon glyphicon-save"></span>
+            Save
+        </button>
+    </div>
+
+</form>

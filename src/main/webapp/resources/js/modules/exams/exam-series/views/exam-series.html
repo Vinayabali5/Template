@@ -1,0 +1,9 @@
+<h1>Exam Series Editor</h1>
+<exam-series-table exam-series-list="ctrl.examSeriesList" get-index="ctrl.getIndex(examSeriesId)">
+    <button id="edit-button" class="btn btn-primary btn-sm" ng-init="ctrl.initRow(ctrl.examSeriesId)" ng-click="ctrl.editExamSeries($event)">
+    	<span class="glyphicon glyphicon-pencil"></span> Edit
+    </button>
+</exam-series-table>
+<button class="btn btn-primary btn-sm" ng-click="ctrl.addExamSeries()">
+	<span class="glyphicon glyphicon-pencil"></span> Add
+</button>

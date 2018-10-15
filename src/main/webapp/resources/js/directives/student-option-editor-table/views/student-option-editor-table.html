@@ -1,0 +1,37 @@
+<table class="table table-responsive table-hover">
+    <thead>
+        <th ng-show="showStudent">Student ID</th>
+        <th ng-show="showOption">Option</th>
+        <th>Exam Board</th>
+        <th>Exam</th>
+        <th>Exam Series</th>
+        <th>Status</th>
+        <th>Edi Status</th>
+        <th>Resit</th>
+        <th>Private</th>
+        <th permission="'ROLE_Exams Officer'">Actions</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="studentOptionEntry in ctrl.studentOptionEntries">
+            <td ng-show="showStudent">{{ studentOptionEntry.studentId }}</td>
+            <td ng-show="showOption">{{ studentOptionEntry.examOptionId }}</td>
+            <td>{{ studentOptionEntry._examBoard.boardIdentifier }} - {{ studentOptionEntry._examBoard.description }}</td>
+            <td>{{ studentOptionEntry._optionEntryCode }} - {{ studentOptionEntry._optionTitle }}</td>
+            <td>{{ studentOptionEntry._examSeries.examYear }} - {{ studentOptionEntry._examSeries.examSeries }}</td>
+            <td>{{ studentOptionEntry._statusTypeDescription }}</td>
+            <td>{{ studentOptionEntry._ediStatusTypeDescription }}</td>
+            <td>{{ studentOptionEntry.resit | yesNo }}</td>
+            <td>{{ studentOptionEntry.privateStudent | yesNo }}</td>
+            <td permission="'ROLE_Exams Officer'">
+                <button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.editStudentOptionEntry(studentOptionEntry.studentId, studentOptionEntry.examOptionId)">
+					<span class="glyphicon glyphicon-pencil"></span> Edit
+				</button>
+                <button type="button" class="btn btn-danger btn-sm" ng-click="ctrl.deleteStudentOptionEntry(studentOptionEntry.studentId, studentOptionEntry.examOptionId)">
+					<span class="glyphicon glyphicon-pencil"></span> Delete
+				</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button type="button" class="btn btn-primary" permission="'ROLE_Exams Officer'" ng-click="ctrl.addStudentOptionEntry(ctrl.studentId)">Add</button>
+<button type="button" class="btn btn-default" permission="'ROLE_Exams Officer'" ng-click="ctrl.markAmendment(ctrl.studentId)">Mark For Amendment</button>

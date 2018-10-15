@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-md-2 col-md-offset-10">
+        <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.toggleVisibility()">
+            Filters
+            <span class="glyphicon glyphicon-chevron-right" ng-hide="ctrl.visible"></span>
+            <span class="glyphicon glyphicon-chevron-down" ng-show="ctrl.visible"></span>
+        </button>
+        <button ng-show="ctrl.visible" class="btn btn-sm btn-info" type="button" ng-click="ctrl.resetFilters()">Reset Filters</button>
+    </div>
+</div>
+
+<div class="rooms-filters row" ng-show="ctrl.visible">
+    <div class="form-group col-sm-12 col-md-3 row">
+        <label for="initials" class="col-xs-4 col-sm-4 col-md-4 control-label">Initials</label>
+        <div class="col-xs-8 col-sm-8 col-md-8">
+            <input type="text" ng-model="filter.initials" class="form-control text ui-widget-content ui-corner-all" ng-change="ctrl.applyFilter()">
+        </div>
+    </div>
+
+    <div class="form-group col-sm-12 col-md-3 row">
+        <label for="knownAs" class="col-xs-4 col-sm-4 col-md-4 control-label">knownAs</label>
+        <div class="col-xs-8 col-sm-8 col-md-8">
+            <input type="text" ng-model="filter.knownAs" class="form-control text ui-widget-content ui-corner-all" ng-change="ctrl.applyFilter()">
+        </div>
+    </div>
+</div>
+
+<table class="table table-responsive table-hover">
+    <thead>
+        <th ng-click="ctrl.changeSort('person.firstName')">FirstName
+            <span ng-show="ctrl.isSortedAsc('person.firstName')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('person.firstName')"> &#x25B2;</span>
+
+        </th>
+        <th ng-click="ctrl.changeSort('person.surname')">Surname
+            <span ng-show="ctrl.isSortedAsc('person.surname')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('person.surname')"> &#x25B2;</span>
+
+        </th>
+        <th ng-click="ctrl.changeSort('initials')">Initials
+            <span ng-show="ctrl.isSortedAsc('initials')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('initials')"> &#x25B2;</span>
+
+        </th>
+        <th ng-click="ctrl.changeSort('knownAs')">KnownAs
+            <span ng-show="ctrl.isSortedAsc('knownAs')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('knownAs')"> &#x25B2;</span>
+        </th>
+        <th>Network Login </th>
+        <th ng-click="ctrl.changeSort('startDate')">Start Date
+            <span ng-show="ctrl.isSortedAsc('startDate')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('startDate')"> &#x25B2;</span>
+
+        </th>
+        <th ng-click="ctrl.changeSort('endDate')">End Date
+            <span ng-show="ctrl.isSortedAsc('endDate')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('endDate')"> &#x25B2;</span>
+
+        </th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="staff in ctrl.staffs | orderBy : ctrl.sortOrder| filter: ctrl.filterParams">
+            <td>{{ staff.person.firstName }}</td>
+            <td>{{ staff.person.surname }}</td>
+            <td>{{ staff.initials }}</td>
+            <td>{{ staff.knownAs }}</td>
+            <td>{{ staff.networkLogin }}</td>
+            <td>{{ staff.startDate | date:'dd/MM/yyyy' }}</td>
+            <td>{{ staff.endDate | date:'dd/MM/yyyy' }}</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.editStaffs(staff.id)">
+				<span class="glyphicon glyphicon-pencil"></span> Edit
+			</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

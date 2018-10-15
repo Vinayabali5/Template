@@ -1,0 +1,33 @@
+<table class="table table-responsive table-hover">
+    <thead>
+        <th ng-click="ctrl.changeSort('id')">Attendance Monitoring Id
+            <span ng-show="ctrl.isSortedAsc('id')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('id')"> &#x25B2;</span>
+        </th>
+        <th ng-click="ctrl.changeSort('code')">Code
+            <span ng-show="ctrl.isSortedAsc('code')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('code')"> &#x25B2;</span>
+        </th>
+        <th ng-click="ctrl.changeSort('description')">Description
+            <span ng-show="ctrl.isSortedAsc('description')"> &#x25BC;</span>
+            <span ng-show="ctrl.isSortedDesc('description')"> &#x25B2;</span>
+        </th>
+        <th> Warning Colour</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="attendanceMonitoring in attendanceMonitorings |  orderBy:ctrl.sortOrder ">
+            <td>{{ attendanceMonitoring.id }}</td>
+            <td>{{ attendanceMonitoring.code }}</td>
+            <td>{{ attendanceMonitoring.description }}</td>
+            <td>{{ attendanceMonitoring.warningColour }}</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.editAttendanceMonitorings(attendanceMonitoring.id)">
+					<span class="glyphicon glyphicon-pencil"></span> Edit
+				</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.addAttendanceMonitorings()">
+				<span class="glyphicon glyphicon-pencil"></span> Add
+			</button>

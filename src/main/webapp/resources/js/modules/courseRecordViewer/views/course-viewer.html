@@ -1,0 +1,34 @@
+<h3>Course Details: {{ ctrl.course._levelDescription }} {{ ctrl.course._subjectDescription}}</h3>
+<course-details course="ctrl.course"></course-details>
+<table>
+    <tr>
+        <h4>Reports</h4>
+    </tr>
+    <tr>
+        <td>
+            <report-link class="btn btn-default" report-path="'/CID/Courses/Student Course List with Various Information'" report-format="MHTML" report-params="'CourseMask=' + ctrl.course.spec" include-year="true">Student Course List With Various Information</report-link>
+        </td>
+        <td class="dropdown">
+            <button class="btn btn-sm btn-default dropdown-toggle" type="button" id="reports-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Course Reports <span class="caret"></span></button>
+            <ul class="dropdown-menu" aria-labelledby="reports-menu">
+                <li>
+                    <report-link report-path="'/CID/TimeTabling/Timetable Course - Column'" include-year="true" report-params="'CourseGroupMask=%'+ctrl.course.spec +'%'">Timetables Course Column</report-link>
+                </li>
+                <li>
+                    <report-link report-path="'/CID/TimeTabling/Timetable Course - Square'" report-params="'CourseSpec='+ctrl.course.spec">Timetables Course - Square</report-link>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+<uib-tabset active="activeTab">
+    <uib-tab classes="tab-sm" index="'course'" heading="Course Groups">
+        <h4>Course Groups</h4>
+        <course-groups-table course-groups="ctrl.courseGroups" show-year="true" include-reports="true"></course-groups-table>
+    </uib-tab>
+
+    <uib-tab classes="tab-sm" index="'enrolments'" heading="Enrolments">
+        <h4>Enrolments</h4>
+        <enrolments-table enrolments="ctrl.enrolments" show-student="true" show-course="false" show-status="true" show-monitoring="true"></enrolments-table>
+    </uib-tab>
+</uib-tabset>

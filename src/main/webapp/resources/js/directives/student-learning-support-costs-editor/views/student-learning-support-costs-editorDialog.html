@@ -1,0 +1,89 @@
+<form name="studentLearningSupportCostEditForm" role="form" novalidate show-validation>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="ctrl.cancel()">&times;</button>
+        <h4 class="modal-title">Create or edit a Student Learning Support Costs</h4>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <div class="form-group" ng-show="false">
+                <label for="studentId">Student ID</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input type="text" class="form-control" name="studentId" readonly ng-model="ctrl.studentLearningSupportCost.studentId">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="qualificationData" class="col-xs-4 col-sm-4 col-md-4 control-label">Start Date</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-init="studentLearningSupportCostStartDatePicker = false" uib-datepicker-popup="dd/MM/yyyy" is-open="studentLearningSupportCostStartDatePicker" ng-model="ctrl.studentLearningSupportCost.startDate" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="studentLearningSupportCostStartDatePicker = !studentLearningSupportCostStartDatePicker"><span class="glyphicon glyphicon-calendar"></span></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="qualificationData" class="col-xs-4 col-sm-4 col-md-4 control-label">End Date</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-init="studentLearningSupportCostEndDatePicker = false" uib-datepicker-popup="dd/MM/yyyy" is-open="studentLearningSupportCostEndDatePicker" ng-model="ctrl.studentLearningSupportCost.endDate" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="studentLearningSupportCostEndDatePicker = !studentLearningSupportCostEndDatePicker"><span class="glyphicon glyphicon-calendar"></span></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="grade" class="col-xs-4 col-sm-4 col-md-4 control-label">Hours Per week</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input type="text" name="grade" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.studentLearningSupportCost.hoursPerWeek"></input>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="grade" class="col-xs-4 col-sm-4 col-md-4 control-label">Weeks</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input type="text" name="grade" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.studentLearningSupportCost.weeks"></input>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="field_title" class="col-xs-4 col-sm-4 col-md-4 control-label">Rate</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input type="text" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.studentLearningSupportCost.rate"></input>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="grade" class="col-xs-4 col-sm-4 col-md-4 control-label">Description</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input type="text" name="grade" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.studentLearningSupportCost.description"></input>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="grade" class="col-xs-4 col-sm-4 col-md-4 control-label">Period</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input type="text" name="grade" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.studentLearningSupportCost.periodDescription"></input>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="ctrl.cancel()">
+			<span class="glyphicon glyphicon-ban-circle"></span> Cancel
+		</button>
+        <button type="button" class="btn btn-primary" ng-disabled="studentLearningSupportCostEditForm.$invalid || studentLearningSupportCostEditForm.$submitted" ng-click="ctrl.save()">
+			<span class="glyphicon glyphicon-save"></span> Save
+		</button>
+    </div>
+
+</form>

@@ -1,0 +1,81 @@
+<form id="studentSummaryEditForm" name="studentSummaryEditForm" role="form" novalidate ng-submit="ctrl.save()" show-validation>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="ctrl.cancel()">&times;</button>
+        <h4 class="modal-title">Edit Student Details</h4>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+
+            <div class="form-group">
+                <label for="uln" class="col-xs-4 col-sm-4 col-md-4 control-label">ULN</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="uln" type="text" name="uln" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.student.uln"></input>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="uci" class="col-xs-4 col-sm-4 col-md-4 control-label">UCI</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="uci" type="text" name="uci" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.student.uci"></input>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ethnicity" class="col-xs-4 col-sm-4 col-md-4 control-label">Ethnicity:</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <ethnicity-selection class="form-control" include-blank="true" ng-model="ctrl.student.ethnicityId"></ethnicity-selection>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="nationality" class="col-xs-4 col-sm-4 col-md-4 control-label">Nationality:</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <nationality-selection class="form-control" include-blank="true" ng-model="ctrl.student.nationalityId"></nationality-selection>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="school" class="col-xs-4 col-sm-4 col-md-4 control-label">Previous School:</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <school-selection class="form-control" include-blank="true" ng-model="ctrl.student.previousSchoolId"></school-selection>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="LLDDHealthProblem" class="col-xs-4 col-sm-4 col-md-4 control-label">LLDD Health Problem:</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <lLDD-health-problem-selection class="form-control" include-blank="true" ng-model="ctrl.student.llddHealthProblemId"></lLDD-health-problem-selection>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="medicalNote" class="col-xs-4 col-sm-4 col-md-4 control-label">Medical Notes</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="medicalNote" type="text" name="medicalNote" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.student.medicalNote"></input>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="monitorable" class="col-xs-4 col-sm-4 col-md-4 control-label">Monitorable</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input type="checkbox" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.student.monitorable"></input>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="resident" class="col-xs-4 col-sm-4 col-md-4 control-label">Resident</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input type="checkbox" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.student.resident"></input>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="ctrl.cancel()"> <span class="glyphicon glyphicon-ban-circle"></span> Cancel</button>
+        <button type="submit" class="btn btn-primary" ng-disabled="studentSummaryEditForm.$invalid || studentSummaryEditForm.$submitted"><span class="glyphicon glyphicon-save"></span> Save</button>
+    </div>
+
+</form>

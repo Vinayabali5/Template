@@ -1,0 +1,8 @@
+{
+  "location": "cc",
+  "profile": "dev",
+  "apiUrl": "http://localhost:9001",
+  "reportUrl": "http://reports.coulsdon.ac.uk/ReportServer/",
+  "studentImagesUrl": "http://student-imgs.coulsdon.ac.uk",
+  "debug": "true"
+}

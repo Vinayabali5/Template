@@ -1,0 +1,8 @@
+<h3>Main Menu</h3>
+<ul class="side-bar side-bar-global">
+    <li permission="'ROLE_Staff'" permission-not="['ROLE_Office Administration', 'ROLE_Developer']"><a href="#" ui-sref="student-editor">Student Viewer</a></li>
+    <li permission="['ROLE_Office Administration', 'ROLE_Developer']"><a href="#" ui-sref="student-editor">Student Editor</a></li>
+    <li permission="'ROLE_Staff'"><a href="#" ui-sref="course-record">Course Records</a></li>
+    <li permission="'ROLE_Staff'"><a href="#" ui-sref="site.reports">Reports</a></li>
+    <li permission="'ROLE_Developer'"><a href="#" ui-sref="test">Tests</a></li>
+</ul>

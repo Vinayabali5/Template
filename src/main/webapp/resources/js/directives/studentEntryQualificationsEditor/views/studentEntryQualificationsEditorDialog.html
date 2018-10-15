@@ -1,0 +1,67 @@
+<form id="studentEntryQualificationEditForm" name="studentEntryQualificationEditForm" role="form" novalidate show-validation>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="ctrl.cancel()">&times;</button>
+        <h4 class="modal-title" id="myToDoLabel">Create or edit a Entry Qualification</h4>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <div class="form-group" ng-show="false">
+                <label for="studentId">Student ID</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="studentId" type="text" class="form-control" name="studentId" readonly ng-model="ctrl.studentEntryQualification.studentId">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="studentEntryQualification" class="col-xs-4 col-sm-4 col-md-4 control-label">Entry Qualification:</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <entry-qualification-selection id="studentEntryQualification" class="form-control" ng-model="ctrl.studentEntryQualification.entryQualificationId"></entry-qualification-selection>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="studentEntryQualification" class="col-xs-4 col-sm-4 col-md-4 control-label">Exam Board:</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <exam-board-selection id="studentEntryQualification" class="form-control" ng-model="ctrl.studentEntryQualification.examBoardId"></exam-board-selection>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="grade" class="col-xs-4 col-sm-4 col-md-4 control-label">Grade</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input id="grade" type="text" name="grade" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.studentEntryQualification.grade"></input>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="qualificationData" class="col-xs-4 col-sm-4 col-md-4 control-label">Date</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-init="studentEntryQualificationDatePicker = false" uib-datepicker-popup="dd/MM/yyyy" is-open="studentEntryQualificationDatePicker" ng-model="ctrl.studentEntryQualification.date" />
+                        <span class="input-group-btn">
+            			<button type="button" class="btn btn-default" ng-click="studentEntryQualificationDatePicker = !studentEntryQualificationDatePicker"><span class="glyphicon glyphicon-calendar"></span></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="field_title" class="col-xs-4 col-sm-4 col-md-4 control-label">Checked</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input type="checkbox" class="form-control text ui-widget-content ui-corner-all" ng-model="ctrl.studentEntryQualification.checked"></input>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="ctrl.cancel()">
+			<span class="glyphicon glyphicon-ban-circle"></span> Cancel
+		</button>
+        <button type="button" class="btn btn-primary" ng-disabled="contactEditForm.$invalid || contactEditForm.$submitted" ng-click="ctrl.save()">
+			<span class="glyphicon glyphicon-save"></span> Save
+		</button>
+    </div>
+
+</form>

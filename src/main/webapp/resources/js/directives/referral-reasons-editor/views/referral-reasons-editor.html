@@ -1,0 +1,22 @@
+<table class="table table-responsive table-hover">
+    <thead>
+        <th>Id</th>
+        <th> reason </th>
+        <th> LLDD Health Problem CategoryId</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="referralReason in referralReasons |  orderBy:ctrl.sortOrder ">
+            <td>{{ referralReason.id }}</td>
+            <td>{{ referralReason.reason }}</td>
+            <td>{{ referralReason._llddHealthProblemCategoryDescription }}</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.editReferralReasons(referralReason.id)">
+					<span class="glyphicon glyphicon-pencil"></span> Edit
+				</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.addReferralReasons()">
+				<span class="glyphicon glyphicon-pencil"></span> Add
+			</button>

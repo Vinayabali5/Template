@@ -1,0 +1,22 @@
+<div>
+    <table class="table table-responsive table-hover">
+        <thead>
+            <th>Exam Board Identifier</th>
+            <th>Exam Board Name</th>
+            <th>Exam Board Description</th>
+            <th>Alternative UCI</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="alternativeUci in ctrl.studentAlternativeUcis">
+                <td>{{alternativeUci._examBoardIdentifier}}</td>
+                <td>{{alternativeUci._examBoardName}}</td>
+                <td>{{alternativeUci._examBoardDescription}}</td>
+                <td>{{alternativeUci.alternativeUci}}</td>
+                <td><button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.editStudentAlternativeUci(alternativeUci)">Edit</button>
+                    <button type="button" class="btn btn-danger btn-sm" ng-click="ctrl.deleteAlternativeUci(alternativeUci.studentId,alternativeUci.examBoardId)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button type="button" class="btn btn-primary" ng-click="ctrl.addStudentAlternativeUci(ctrl.studentId)">Add</button></td>
+</div>

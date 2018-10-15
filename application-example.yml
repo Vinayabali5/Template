@@ -1,0 +1,7 @@
+apiUrl: {{ API URL HERE }}
+reportUrl: {{ REPORT SERVER URL HERE }}
+studentImagesUrl: {{ STUDENT IMAGE BASE URL HERE }}
+debug: true
+
+location: rc
+profile: prod

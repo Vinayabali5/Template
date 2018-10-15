@@ -1,0 +1,83 @@
+<div class="student-learning-support-details container-fluid">
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="col-xs-5">Reading Level:</div>
+            <div class="col-xs-7">{{ studentLearningSupport._readingInitialAssessmentDescirption }}</div>
+            <div class="col-xs-5">Writing Level:</div>
+            <div class="col-xs-7">{{ studentLearningSupport._writingInitialAssessmentDescirption }}</div>
+            <div class="col-xs-5">Spelling Level:</div>
+            <div class="col-xs-7">{{ studentLearningSupport._spellingInitialAssessmentDescirption }}</div>
+        </div>
+        <div class="col-xs-6">
+            <div class="col-xs-5">Referral Notes:</div>
+            <div class="col-xs-7">{{ studentLearningSupport.referralNotes }}</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-5">
+            <h3>Referral Reasons</h3>
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <th ng-show="showAll || showStudent">StudentId</th>
+                    <th>Referral Reason</th>
+                    <th>Primary</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="referralReason in studentLearningSupport.referralReasons">
+                        <td ng-show="showAll || showStudent">{{ referralReason.studentId }}</td>
+                        <td>{{ referralReason._referralReasonDescription }}</td>
+                        <td>{{ referralReason.primary | yesNo }}</td>
+                    </tr>
+                    <tr ng-show="studentLearningSupport.referralReasons.length == 0">
+                        <td colspan="2">No Referral Resaons</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-12 col-md-7">
+            <h3>Concessions</h3>
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <th ng-show="showAll || showStudent">StudentId</th>
+                    <th>Concession Code</th>
+                    <th>Concession Description</th>
+                    <th>Extra Time Percentage</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="concession in studentLearningSupport.concessions">
+                        <td ng-show="showAll || showStudent">{{ concession.studentId }}</td>
+                        <td>{{ concession._concessionCode }}</td>
+                        <td>{{ concession._concessionDescription }}</td>
+                        <td>{{ concession.extraTimePercentage }}</td>
+                    </tr>
+                    <tr ng-show="studentLearningSupport.concessions.length == 0">
+                        <td colspan="3">No Concessions</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-sm-12 col-md-7">
+            <h3>Exam Concessions Table</h3>
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <th> Concessions Being Investigated</th>
+                    <th>Date of Assessment</th>
+                    <th>Exam Concession Approved</th>
+                    <th>BTEC Concession Approved</th>
+                    <th>FS Concession Approved</th>
+                </thead>
+                <tbody>
+                    <td>{{ studentLearningSupport.concessionApplication | yesNo }}</td>
+                    <td>{{ studentLearningSupport.assessmentDate | date:'dd/MM/yyyy' }}</td>
+                    <td>{{ studentLearningSupport.examConcessionApproved | yesNo }}</td>
+                    <td>{{ studentLearningSupport.btecConcessionApproved | yesNo }}</td>
+                    <td>{{ studentLearningSupport.fsConcessionApproved | yesNo }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

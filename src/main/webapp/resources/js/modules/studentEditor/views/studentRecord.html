@@ -1,0 +1,350 @@
+<h3>Student Details:</h3>
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-5">
+        <student-summary student="ctrl.student"></student-summary>
+        <student-warning-details student-warning="ctrl.warnings"></student-warning-details>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-5">
+        <student-year-details student-year="ctrl.studentYear"></student-year-details>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-2">
+        <div class="row">
+            <student-image class="col-xs-6 col-sm-6 col-md-6 col-lg-12" student-id="ctrl.student.id"></student-image>
+            <div class="special-category-banner col-xs-4 col-sm-6 col-md-6 col-lg-12">{{ ctrl.student._specialCategoryCode }}</div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="student-reports col-sm-12 col-md-6 col-lg-5">
+        <report-link class="btn btn-sm btn-default" report-path="'/CID/Timetabling/Timetable Student - Square'" report-toolbar="true" report-params="'StudentList='+ctrl.student.id" include-year="true">Student Timetable</report-link>
+        <report-link class="btn btn-sm btn-default" report-path="'/CID/Attendance Monitoring/Student Overall Attendance By Course'" report-toolbar="false" report-params="'AdmNo='+ctrl.student.id">Attendance by Course</report-link>
+        <report-link class="btn btn-sm btn-default" report-path="'/CID/Interim Reports/Interim Report'" report-toolbar="true" report-params="'Students='+ctrl.student.id">Interim Report Viewer</report-link>
+        <word-generator permission="'ROLE_Office Administration'" student-id="ctrl.student.id"></word-generator>
+        <report-link class="btn btn-sm btn-default" report-path="'/CID/Exams/Student Exam Timetables'" report-format="'PDF'" report-params="'Students='+ctrl.student.id+'&ExamSeriesCharacter=B'" include-year="true">November Exam Timetable</report-link>
+        <report-link class="btn btn-sm btn-default" report-path="'/CID/Exams/Student Exam Timetables'" report-format="'PDF'" report-params="'Students='+ctrl.student.id+'&ExamSeriesCharacter=6'" include-year="true">Summer Exam Timetable</report-link>
+        <div class="btn-group">
+            <button class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-print"></span> Print Forms <span class="caret"></span></button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+                <li>
+                    <report-link report-path="'/CID/Students/Course Change Form'" report-format="'PDF'" report-params="'StudentList='+ctrl.student.id" include-year="true">Course Change Form</report-link>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Change of Status Forms</li>
+                <li>
+                    <report-link report-path="'/CID/Attendance Monitoring/Change Of Status Form'" report-format="'PDF'" report-params="'Students='+ctrl.student.id + '&ChangeType=AM/PM'" include-year="false">NP/NE For Attendance/Punctuality</report-link>
+                </li>
+                <li>
+                    <report-link report-path="'/CID/Attendance Monitoring/Change Of Status Form'" report-format="'PDF'" report-params="'Students='+ctrl.student.id + '&ChangeType=CM'" include-year="false">NP/NE For Subject</report-link>
+                </li>
+                <li>
+                    <report-link report-path="'/CID/Attendance Monitoring/Change Of Status Form'" report-format="'PDF'" report-params="'Students='+ctrl.student.id + '&ChangeType=RDA/RDP'" include-year="false">RISK OF DISCONTINUATION Attendance/Punctuality</report-link>
+                </li>
+                <li>
+                    <report-link report-path="'/CID/Attendance Monitoring/Change Of Status Form'" report-format="'PDF'" report-params="'Students='+ctrl.student.id + '&ChangeType=RDC'" include-year="false">RISK OF DISCONTINUATION For Subject</report-link>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                    <report-link report-path="'/CID/Students/Early Leavers Form'" report-format="'PDF'" report-params="'student='+ctrl.student.id" include-year="false">Early Leavers Form</report-link>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="student-actions col-sm-12 col-md-6 col-lg-7" permission="'ROLE_Office Administration'">
+        <student-uci-editor student="ctrl.student"></student-uci-editor>
+        <student-summary-editor student-id="ctrl.student.id" student="ctrl.student"></student-summary-editor>
+        <student-year-editor student-id="ctrl.student.id" year-id="ctrl.year.id" student-year="ctrl.studentYear"></student-year-editor>
+        <student-warning-editor student-id="ctrl.student.id" student-warning="ctrl.warnings"></student-warning-editor>
+        <student-bursary-editor student-bursary="ctrl.studentBursary"></student-bursary-editor>
+        <student-learning-support-editor student-id="ctrl.student.id" student-learning-support="ctrl.learning-supports"></student-learning-support-editor>
+        <student-withdrawal student-id="ctrl.studentYear.studentId" year-id="ctrl.studentYear.yearId"></student-withdrawal>
+    </div>
+    <div class="student-actions col-sm-12 col-md-7 col-lg-8" permission="'ROLE_Careers'">
+        <student-withdrawal student-id="ctrl.studentYear.studentId" year-id="ctrl.studentYear.yearId"></student-withdrawal>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <p>&nbsp;</p>
+    </div>
+</div>
+<uib-tabset active="activeTab">
+    <uib-tab classes="tab-sm" index="'personal'" heading="Personal Details">
+        <div class="container-fluid">
+            <div class="row">
+                <h3 class="col-xs-12 col-md-12">Student Person Details</h3>
+            </div>
+            <div class="row">
+                <person-details class="col-xs-12 col-md-6" person="ctrl.student.person" show-all="true"></person-details>
+                <div class="col-xs-12 col-md-6">
+                    <div class="row">
+                        <div class="col-xs-4">Address:</div>
+                        <div class="col-xs-8">
+                            <address-details permission permission-not="'ROLE_Office Administration'" address="ctrl.studentAddress"></address-details>
+                            <address-editor permission="'ROLE_Office Administration'" address-id="ctrl.studentAddress.id" address="ctrl.studentAddress"></address-editor>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">Previous School:</div>
+                        <div class="col-xs-8">{{ ctrl.student._previousSchoolName }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" permission="'ROLE_Office Administration'">
+                <person-editor class="col-xs-12 col-md-6" person="ctrl.student.person"></person-editor>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Contact Details</h3>
+                    <contacts-table permission permission-not="'ROLE_Office Administration'" contacts="ctrl.contacts"></contacts-table>
+                    <contacts-editor permission="'ROLE_Office Administration'" person-id="ctrl.student.person.id" contacts="ctrl.contacts"></contacts-editor>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" permission="['ROLE_Office Administration', 'ROLE_First Aid Coordinator', 'ROLE_Pastoral']">
+                    <h3>Special Categories</h3>
+                    <student-special-category-editor permission="'ROLE_Office Administration'" student-id="ctrl.student.id" special-categories="ctrl.specialCategories"></student-special-category-editor>
+                    <student-special-category-details permission permission-not="'ROLE_Office Administration'" special-categories="ctrl.specialCategories"></student-special-category-details>
+                </div>
+                <div class="col-md-6" permission="['ROLE_Office Administration', 'ROLE_First Aid Coordinator', 'ROLE_Pastoral']">
+                    <h3>Medical Notes</h3>
+                    <medical-notes-details permission permission-not="['ROLE_Office Administration', 'ROLE_First Aid Coordinator']" student="ctrl.student"></medical-notes-details>
+                    <medical-notes-editor permission="['ROLE_Office Administration', 'ROLE_First Aid Coordinator']" student-id="ctrl.student.id" student="ctrl.student"></medical-notes-editor>
+                </div>
+                <div class="student-busary-info col-md-6">
+                    <div>
+                        <h3>Student Bursary</h3>
+                    </div>
+                    <student-bursary-details student-bursary="ctrl.studentBursary"></student-bursary-details>
+                </div>
+            </div>
+            <div class="row">
+                <div class="college-fund-payments col-md-12">
+                    <h3>College Fund Payments</h3>
+                    <student-college-fund-paid student-college-fund-paid="ctrl.studentCollegeFundPaid"></student-college-fund-paid>
+
+                    <college-fund-payment-details permission permission-not="['ROLE_Office Administration']" college-fund-payment="ctrl.collegeFundPayments"></college-fund-payment-details>
+                    <college-fund-payment-editor permission="['ROLE_Office Administration']" student-id="ctrl.student.id" college-fund-payment="ctrl.collegeFundPayments"></college-fund-payment-editor>
+                </div>
+            </div>
+        </div>
+    </uib-tab>
+
+    <uib-tab classes="tab-sm" index="'enrolments'" heading="Enrolments">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12" permission="['ROLE_Office Administration','ROLE_Exams Officer']">
+                    <h3>Enrolments Editor</h3>
+                    <enrolments-editor student-id="ctrl.student.id" enrolments="ctrl.enrolments" show-year="true" show-status="true" show-monitoring="true"></enrolments-editor>
+                    <enrolment-manager student="ctrl.student" enrolments="ctrl.enrolments" permission="'ROLE_Office Administration'"></enrolment-manager>
+                    <report-link class="btn btn-sm btn-default" report-path="'/CID/Students/Course Change Form'" report-format="'PDF'" report-params="'StudentId='+ctrl.student.id" permission="'ROLE_Office Administration'">Course Change Form</report-link>
+                </div>
+                <div class="col-md-12" permission permission-not="['ROLE_Office Administration','ROLE_Exams Officer']">
+                    <h3>Enrolment Details</h3>
+                    <enrolments-table enrolments="ctrl.enrolments" show-year="true" show-status="true" show-monitoring="true"></enrolments-table>
+                    <enrolment-manager student="ctrl.student" enrolments="ctrl.enrolments" permission="'ROLE_Enrolment Manager'"></enrolment-manager>
+                </div>
+            </div>
+        </div>
+    </uib-tab>
+
+    <uib-tab classes="tab-sm" index="'qoe'" heading="Entry Qualifications">
+        <div class="container-fluid">
+            <h3>Student Entry Qualifications</h3>
+            <student-entry-qualifications-editor permission="'ROLE_Office Administration'" student-id="ctrl.student.id" student-entry-qualifications="ctrl.studentEntryQualifications"></student-entry-qualifications-editor>
+            <student-entry-qualifications-table permission permission-not="'ROLE_Office Administration'" student-entry-qualifications="ctrl.studentEntryQualifications"></student-entry-qualifications-table>
+        </div>
+    </uib-tab>
+
+    <uib-tab classes="tab-sm" index="'exam-entry'" heading="Exam Entry Details" permission="'ROLE_Exams Officer'">
+        <student-option-editor-table student-option-entries="ctrl.studentOptionEntries" student-id="ctrl.student.id"></student-option-editor-table>
+    </uib-tab>
+
+    <uib-tab classes="tab-sm" index="'exam-results'" heading="Exam Results">
+        <div class="col-md-12" permission="'ROLE_Exams Officer'">
+            <h3>Exam Results - Editor</h3>
+            <exam-results-editor results="ctrl.examResults" show-all="true"></exam-results-editor>
+        </div>
+        <div class="col-md-12" permission permission-not="'ROLE_Exams Officer'">
+            <h3>Exam Results</h3>
+            <exam-results-table results="ctrl.examResults" show-year="true" show-board="true"></exam-results-table>
+        </div>
+        <div class="col-md-12">
+            <h3>Exam Results - Archive</h3>
+            <external-results-archive-table external-results-archive="ctrl.externalResultsArchive"></external-results-archive-table>
+        </div>
+    </uib-tab>
+
+    <uib-tab classes="tab-sm" index="'register'" heading="Register">
+        <div class="container-fluid">
+            <h3>Student's Register</h3>
+            <div class="row">
+                <div class="col-sm-10">
+                    <fieldset>Display options:</fieldset>
+                    <ul class="list-inline">
+                        <li>
+                            <input type="checkbox" ng-model="showFullAttendanceData"> Show All Attendance Data
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-12">
+                    <student-overall-attendance-details student-overall-attendance="ctrl.studentOverallAttendance" show-all="showFullAttendanceData"></student-overall-attendance-details>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <registers-editor permission="'ROLE_Office Administration'" registers="ctrl.registers"></registers-editor>
+                    <registers-table permission permission-not="'ROLE_Office Administration'" registers="ctrl.registers"></registers-table>
+                </div>
+            </div>
+        </div>
+    </uib-tab>
+
+    <uib-tab classes="tab-sm" index="'ilp'" heading="ILP Interviews">
+        <div class="container-fluid">
+            <h3>ILP Interviews</h3>
+            <div class="row">
+                <div class="col-sm-10">
+                    <fieldset>Display options:</fieldset>
+                    <ul class="list-inline">
+                        <li>
+                            <input type="checkbox" ng-model="showCourse" ng-init="showCourse = true"> Show Course
+                        </li>
+                        <li>
+                            <input type="checkbox" ng-model="showCourseGroup"> Show Course Group
+                        </li>
+                        <li>
+                            <input type="checkbox" ng-model="showILPTargets"> Show Targets
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-sm btn-primary" ng-click="showILPFilters = !showILPFilters">
+                        Filters
+                        <span class="glyphicon glyphicon-chevron-right" ng-hide="showILPFilters"></span>
+                        <span class="glyphicon glyphicon-chevron-down" ng-show="showILPFilters"></span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="filter-box ilp-interview-filters row" ng-show="showILPFilters">
+                <fieldset>Filters:</fieldset>
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="title" class="col-xs-4 control-label">Interview Type</label>
+                    <div class="col-xs-8">
+                        <ilp-interview-type-selection class="form-control" ng-model="ctrl.ilpFilter.typeId"></ilp-interview-type-selection>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="title" class="col-xs-4 control-label">Course Spec</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control" ng-model="ctrl.ilpFilter._courseSpec">
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="title" class="col-xs-4 control-label">Course Description</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control" ng-model="ctrl.ilpFilter._courseDescription">
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="title" class="col-xs-4 control-label">Staff</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control" ng-model="ctrl.ilpFilter._staffName">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <ilp-interviews-table ilp-interviews="ctrl.ilpInterviews" filter="ctrl.ilpFilter" show-course="showCourse" show-course-group="showCourseGroup" show-staff="true" show-targets="showILPTargets"></ilp-interviews-table>
+            </div>
+        </div>
+    </uib-tab>
+
+    <uib-tab classes="tab-sm" index="'learning-support'" heading="Learning Support">
+        <div class="container-fluid">
+            <h3>Learning Support</h3>
+            <student-learning-support-details student-learning-support="ctrl.learningSupport"></student-learning-support-details>
+        </div>
+        <div class="container-fluid">
+            <h3>Learning Support ILP</h3>
+            <ilp-interviews-table ilp-interviews="ctrl.ilpInterviews" filter="'Learning Support'" show-staff="true" show-letter-home="false"></ilp-interviews-table>
+        </div>
+    </uib-tab>
+
+    <uib-tab classes="tab-sm" index="'ir'" heading="Interim Reports">
+        <div class="container-fluid">
+            <h3>Interim Reports</h3>
+            <div class="row">
+                <div class="col-md-8">
+                    <fieldset>Display options:</fieldset>
+                    <ul class="list-inline">
+                        <li>
+                            <input type="checkbox" ng-model="showIRAttendanceFigures"> Show Attendance Figures
+                        </li>
+                        <li>
+                            <input type="checkbox" ng-model="showKeyAssessments"> Show Key Assessments
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <report-link class="btn btn-sm btn-default" report-path="'/CID/Interim Reports/Student Interim Report Summary for Student List'" report-toolbar="false" report-params="'Student='+ctrl.student.id" include-year="true">Interim Report Summary</report-link>
+                </div>
+            </div>
+            <div class="row">
+                <student-interim-reports-table student-interim-reports="ctrl.interimReports" show-attendance-figures="showIRAttendanceFigures" show-key-assessments="showKeyAssessments"></student-interim-reports-table>
+            </div>
+        </div>
+    </uib-tab>
+
+    <uib-tab classes="tab-sm" index="'concessions'" heading="Concession Details" permission="['ROLE_Exams Officer']">
+        <student-concession-type-table student-id="ctrl.student.id" show-status="true"></student-concession-type-table>
+    </uib-tab>
+
+    <uib-tab classes="tab-sm" index="'alternative-uci'" heading="Alternative UCIs" permission="'ROLE_Exams Officer'">
+        <student-alternative-uci-table student-id="ctrl.student.id" student-alternative-ucis="ctrl.studentAlternativeUcis" show-status="true"></student-alternative-uci-table>
+    </uib-tab>
+
+    <uib-tab classes="tab-sm" index="'admissions'" heading="Admissions Details" permission="'ROLE_Office Administration'">
+        <div class="container-fluid">
+            <student-admissions-details student-admissions="ctrl.studentAdmissions"></student-admissions-details>
+        </div>
+    </uib-tab>
+
+    <uib-tab classes="tab-sm" index="'warning-code-change'" heading="Warning Code Change" permission="'ROLE_Office Administration'">
+        <div class="container-fluid">
+            <warning-code-change-details student-id="ctrl.student.id" warning-code-changes="ctrl.warningCodeChanges"></warning-code-change-details>
+        </div>
+    </uib-tab>
+
+    <uib-tab classes="tab-sm" index="'id-violations'" heading="ID Violations" permission="['ROLE_Developer','ROLE_ID Violation']">
+        <div class="container-fluid">
+            <div class="row">
+                <h3>ID Violation Information</h3>
+            </div>
+            <div class="row">
+                <ilp-interviews-table ilp-interviews="ctrl.ilpInterviews" filter="'ID Violation'" show-staff="false" show-course="false" show-letter-home="false"></ilp-interviews-table>
+            </div>
+            <div class="row">
+                <identification-violations-editor student-id="ctrl.student.id" identification-violations="ctrl.identificationViolations"></identification-violations-editor>
+            </div>
+        </div>
+    </uib-tab>
+
+    <uib-tab classes="tab-sm" index="'learning-support-costs'" heading="Learning Support Costs" permission="['ROLE_Developer','ROLE_Learning Support']">
+        <div class="container-fluid">
+            <div class="row">
+                <h3>Student Learning Support Costs</h3>
+                <student-learning-support-costs-editor student-id="ctrl.student.id" student-learning-support-costs="ctrl.studentLearningSupportCosts"></student-learning-support-costs-editor>
+            </div>
+        </div>
+    </uib-tab>
+
+    <uib-tab classes="tab-sm" index="'learning-support-visits'" heading="Learning Support Visits">
+        <div class="container-fluid">
+            <div class="row">
+                <h3>Student Learning Support Visits</h3>
+                <student-learning-support-visits-editor permission="'ROLE_Office Administration'" student-id="ctrl.student.id" student-learning-support-visits="ctrl.studentLearningSupportVisits"></student-learning-support-visits-editor>
+            </div>
+        </div>
+    </uib-tab>
+
+</uib-tabset>

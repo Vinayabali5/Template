@@ -1,0 +1,30 @@
+<div class="examBoard-list">
+    <h1>Exam Board List</h1>
+    <table id="schoolTable" class="table">
+        <thead class="table-header">
+            <tr>
+                <th>Board Identifier</th>
+                <th>Board Code</th>
+                <th>Board Name</th>
+                <th>Description</th>
+                <th>Telephone No</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="examBoard in ctrl.examBoardList" class="ng-cloak">
+                <td>{{ examBoard.boardIdentifier }}</td>
+                <td>{{ examBoard.boardCode }}</td>
+                <td>{{ examBoard.name }}</td>
+                <td>{{ examBoard.description }}</td>
+                <td>{{ examBoard.telephoneNo }}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm" ng-click="ctrl.editExamBoard(examBoard.id)"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <button class="btn btn-primary btn-sm" ng-click="ctrl.addExamBoard()">Add Exam Board</button>
+    </div>
+</div>

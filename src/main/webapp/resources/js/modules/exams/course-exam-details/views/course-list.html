@@ -1,0 +1,65 @@
+<h1>Course List</h1>
+
+<div class="course-list-filters row">
+    <h4 class="col-md-12">Filters</h4>
+
+    <div class="form-group col-sm-12 col-md-3 row">
+        <label for="title" class="col-xs-4 col-sm-4 col-md-4 control-label">Course Spec</label>
+        <div class="col-xs-8 col-sm-8 col-sm-8 col-md-8">
+            <input type="text" ng-model="filter.courseSpec" class="form-control text ui-widget-content ui-corner-all" ng-change="ctrl.applyFilter()">
+        </div>
+    </div>
+
+    <div class="form-group col-sm-12 col-md-3 row">
+        <label for="title" class="col-xs-4 col-sm-4 col-md-4 control-label">Level</label>
+        <div class="col-xs-8 col-sm-8 col-sm-8 col-md-8">
+            <input type="text" ng-model="filter.level" class="form-control text ui-widget-content ui-corner-all" ng-change="ctrl.applyFilter()">
+        </div>
+    </div>
+
+    <div class="form-group col-sm-12 col-md-3 row">
+        <label for="title" class="col-xs-4 col-sm-4 col-md-4 control-label">Subject</label>
+        <div class="col-xs-8 col-sm-8 col-sm-8 col-md-8">
+            <input type="text" ng-model="filter.subject" class="form-control text ui-widget-content ui-corner-all" ng-change="ctrl.applyFilter()">
+        </div>
+    </div>
+
+    <div class="form-group col-sm-12 col-md-3 row">
+        <label for="title" class="col-xs-4 col-sm-4 col-md-4 control-label">Exam Board</label>
+        <div class="col-xs-8 col-sm-8 col-sm-8 col-md-8">
+            <input type="text" ng-model="filter.examBoard" class="form-control text ui-widget-content ui-corner-all" ng-change="ctrl.applyFilter()">
+        </div>
+    </div>
+</div>
+
+<div class="course-list">
+    <table class="table table-responsive table-stripped">
+        <thead>
+            <th>Course Spec</th>
+            <th>Level</th>
+            <th>Subject</th>
+            <th>Exam board</th>
+            <th>Syllabus code</th>
+            <th>Valid From</th>
+            <th>Valid To</th>
+            <th></th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="course in ctrl.courses | filter:filterParams | orderBy:'spec'">
+                <td>{{ course.spec }}</td>
+                <td>{{ course._levelDescription }}</td>
+                <td>{{ course._subjectDescription }}</td>
+                <td>{{ course._examBoardDescription }}</td>
+                <td>{{ course.syllabusCode }}</td>
+                <td>{{ course._validFromCode | notSet }}</td>
+                <td>{{ course._validToCode | notSet }}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm" ng-click="ctrl.editExamDetails(course.id)">
+<!-- 						ui-sref="course-record.edit-exam-details({ id: course.id }) "> -->
+						<span class="glyphicon glyphicon-pencil"></span> Edit
+					</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

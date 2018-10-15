@@ -1,0 +1,164 @@
+<form id="studentAdmissionEditForm" name="studentAdmissionEditForm" role="form" novalidate show-validation>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="ctrl.cancel()">&times;</button>
+        <h4 class="modal-title" id="myToDoLabel">Edit Student Admission</h4>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <h4 class="modal-header"> Previous School Information </h4>
+            <div class="form-group">
+                <label for="refRequested" class="col-xs-4 col-sm-4 col-md-4 control-label">Reference Requested</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="refRequested" uib-datepicker-popup="dd/MM/yyyy" is-open="refRequested" ng-model="ctrl.studentAdmission.refRequested">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="refRequested = !refRequested" ><span class="glyphicon glyphicon-calendar"></span></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="refReceived" class="col-xs-4 col-sm-4 col-md-4 control-label">Reference Received</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <div class="input-group">
+                        <input id="field_id" type="text" class="form-control" is-open="refReceived" uib-datepicker-popup="dd/MM/yyyy" name="refReceived" ng-model="ctrl.studentAdmission.refReceived">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="refReceived = !refReceived"><span class="glyphicon glyphicon-calendar"></span></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="schoolReportRequested" class="col-xs-4 col-sm-4 col-md-4 control-label">Report Requested:</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <div class="input-group">
+                        <input id="schoolReportRequested" type="text" class="form-control" is-open="schoolReportRequested" uib-datepicker-popup="dd/MM/yyyy" name="refReceived" ng-model="ctrl.studentAdmission.schoolReportRequested">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="schoolReportRequested = !schoolReportRequested"><span class="glyphicon glyphicon-calendar"></span></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="schoolReportReceived" class="col-xs-4 col-sm-4 col-md-4 control-label">Report Received:</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <div class="input-group">
+                        <input id="schoolReportReceived" type="text" class="form-control" is-open="schoolReportReceived" uib-datepicker-popup="dd/MM/yyyy" name="refReceived" ng-model="ctrl.studentAdmission.schoolReportReceived">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="schoolReportReceived = !schoolReportReceived"><span class="glyphicon glyphicon-calendar"></span></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="blueCard" class="col-xs-4 col-sm-4 col-md-4 control-label">Blue Card Date:</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <div class="input-group">
+                        <input id="blueCard" type="text" class="form-control" is-open="blueCard" uib-datepicker-popup="dd/MM/yyyy" name="blueCard" ng-model="ctrl.studentAdmission.blueCard">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="blueCard = !blueCard"><span class="glyphicon glyphicon-calendar"></span></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="true">
+                <label for="description" class="col-xs-4 col-sm-4 col-md-4 control-label">Report Status</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <school-report-status-selection id="schoolReportStatus" class="form-control" readonly="setReadonly" ng-model="ctrl.studentAdmission.schoolReportStatusId"></school-report-status-selection>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <h4 class="modal-header"> Interviewer Details: </h4>
+            <div class="form-group" class="col-xs-4 col-sm-4 col-md-4 control-label">
+                <label for="interviewDate" class="col-xs-4 col-sm-4 col-md-4 control-label">Interview Date:</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <div class="input-group">
+                        <input id="interviewDate" type="text" class="form-control" is-open="interviewDate" uib-datepicker-popup="dd/MM/yyyy" name="id" ng-model="ctrl.studentAdmission.interviewDate">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="interviewDate=! interviewDate"><span class="glyphicon glyphicon-calendar"></span></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="true">
+                <label for="description" class="col-xs-4 col-sm-4 col-md-4 control-label">Interviewer</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <staff-selection id="interviewerId" readonly="setReadonly" class="form-control" include-blank="true" ng-model="ctrl.studentAdmission.interviewerId"></staff-selection>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal-body">
+        <div class="row">
+            <h4 class="modal-header"> Introductory Day/Choices Day/Enrolment Interview Details </h4>
+            <div class="form-group">
+                <label for="refRequested" class="col-xs-4 col-sm-4 col-md-4 control-label">Cannot Attend Introduction Day:</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input type="checkbox" class="form-control" name="cannotAttendIntroDay" ng-model="ctrl.studentAdmission.cannotAttendIntroDay">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="refReceived" class="col-xs-4 col-sm-4 col-md-4 control-label">Cannot Attend Induction Day:</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <input type="checkbox" class="form-control" name="cannotAttendInductionDay" ng-model="ctrl.studentAdmission.cannotAttendInductionDay">
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="schoolReportRequested" class="col-xs-4 col-sm-4 col-md-4 control-label">Date of Induction:</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <div class="input-group">
+                        <input id="inductionDate" type="text" class="form-control" is-open="inductionDate" uib-datepicker-popup="dd/MM/yyyy" name="inductionDate" ng-model="ctrl.studentAdmission.inductionDate">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="inductionDate=! inductionDate"><span class="glyphicon glyphicon-calendar"></span></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="schoolReportReceived" class="col-xs-4 col-sm-4 col-md-4 control-label">Enrolment Interview Date:</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <div class="input-group">
+                        <input id="enrolmentInterviewDate" type="text" class="form-control" is-open="enrolmentInterviewDate" uib-datepicker-popup="dd/MM/yyyy" name="enrolmentInterviewDate" ng-model="ctrl.studentAdmission.enrolmentInterviewDate">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="enrolmentInterviewDate=! enrolmentInterviewDate"><span class="glyphicon glyphicon-calendar"></span></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!--  <div class="form-group">
+                <label for="blueCard" class="col-xs-4 col-sm-4 col-md-4 control-label">Enrolment Interview Time:</label>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                <div class="input-group">
+                    <input id="blueCard" type="text" class="form-control" ui-timepicker="ctrl.options" placeholder="HH:mm"  name="enrolmentInterviewTime"  ng-model="ctrl.studentAdmission.enrolmentInterviewTime">
+                        </div>
+                </div>
+           </div>	 -->
+
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="ctrl.cancel()">
+            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+        </button>
+            <button type="button" class="btn btn-primary" ng-click="ctrl.save()">
+            <span class="glyphicon glyphicon-save"></span> Save
+        </button>
+        </div>
+
+</form>
